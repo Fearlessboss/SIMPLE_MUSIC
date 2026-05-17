@@ -52,6 +52,7 @@ async def start_pm(client, message: Message, _):
                 START_IMG_URL,
                 caption=_['help_1'].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
+                quote=False,
             )
         elif name.startswith("sud"):
             await sudoers_list(client=client, message=message, _=_)
