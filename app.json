@@ -62,6 +62,7 @@
       "value": "https://t.me/+wcALPiJtMCQ0NWFh",
       "required": false
     }‚
+    
     "SUPPORT_CHANNEL": {
       "description": "Your support channel link.",
       "value": "https://t.me/music_Bot_Adda",
