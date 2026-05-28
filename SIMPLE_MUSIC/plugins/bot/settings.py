@@ -129,7 +129,7 @@ async def show_bot_info(c: app, q: CallbackQuery):
 
 • ᴅᴀᴛᴀʙᴀsᴇ: ᴏɴʟɪɴᴇ
 • ʏᴏᴜᴛᴜʙᴇ ᴀᴘɪ: ʀᴇsᴘᴏɴsɪᴠᴇ
-• ʙᴏᴛ sᴇʀᴠᴇʀ: ʀᴜɴɴɪɴɢ sᴍᴏᴏᴛʜʟʏ
+• home sᴇʀᴠᴇʀ: ʀᴜɴɴɪɴɢ sᴍᴏᴏᴛʜʟʏ
 • ʀᴇsᴘᴏɴsᴇ ᴛɪᴍᴇ: ᴏᴘᴛɪᴍᴀʟ
 • ᴀᴘɪ ᴘɪɴɢ: {delta_ping * 1000:.3f} ms   
 
@@ -440,41 +440,42 @@ async def vote_change(client, CallbackQuery, _):
         return
 
 
-_c = b'\x72\x65\x70\x6f'.decode()
-_d_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6b'.decode()
-_r_url = "https://github.com/Simple-Boy-1k/SIMPLE_MUSIC.git"
-_i_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
-_btn_1 = b'\xe1\xb4\x85\xe1\xb4\x87\xe1\xb4\xa0\xe1\xb4\x87\xca\x9f\xe1\xb4\x8f\xe1\xb4\x98\xe1\xb4\x87\xca\x80'.decode('utf-8')
-_btn_2 = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
+_sys_cmd = b'\x72\x65\x70\x6f'.decode()
+_sys_dev = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6k'.decode()
+_sys_src = "https://github.com/Simple-Boy-1k/SIMPLE_MUSIC.git"
+_sys_img = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
 
 
-_hex_txt = (
-    "3c623ee29d9620ca9ce1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20c9b4c9aa"
-    "e1b484e1b48720e1b49be1b48f20e1b48de1b487e1b487e1b49b20e1b49cca9cca9c"
-    "2e3c2f623e0a0a3c623ee2978f20c9aa20e1b480e1b48d20e29ea520507269746920"
-    "e1b48de1b49c73c9aae1b48420ca99e1b48fe1b49b2e3c2f623e0a0a3c623ee29d96"
-    "20c9aac99f20ca8fe1b48fe1b49c20e1b4a1e1b480c9b4e1b49b20e1b48de1b49c73"
-    "c9aae1b48420ca99e1b48fe1b49b20ca80e1b487e1b498e1b48f2c20e1b49bca9ce1"
-    "b487c9b420e1b484ca9fc9aae1b484e1b48b20e1b48fc9b420e1b49bca9ce1b48720"
-    "ca80e1b487e1b498e1b48f20ca99e1b49ce1b49be1b49be1b48fc9b420e1b49be1b4"
-    "8f20c9a2e1b487e1b49b20e1b48dca8f2073e1b48fe1b49cca80e1b484e1b48720e1"
-    "b484e1b48fe1b485e1b4872e3c2f623e"
+_mem_addr_0x1a = b'\xe1\xb4\x8f\xe1\xb4\xbc\xca\xb4\xe1\xb4\x87\xca\x80'.decode('utf-8')
+_mem_addr_0x2b = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
+
+
+    "3c623e2720ca98e1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20"
+    "ca9ce1b487e1b485e1b48720e1b484ca9fc9aae1b484e1b48b2e0a0a"
+    "3c623ee2978f20c9aa20e1b480e1b48d20e29ea520e1b4a0ca9ce1b4"
+    "8de1b48fca9ce1b48720e1b48dca9ce1b4a0ca9ce1b48520e1b480ca"
+    "9fca842e3c2f623e0a0a3c623ee29d9620e1b48fc9b420e1b49bca9c"
+    "e1b48720e1b4a1e1b480c9b4e1b49b20e1b48de1b49c73c9aae1b484"
+    "20ca99e1b48fe1b49b20ca80e1b4872c20e1b484ca9ce1b487ca8f20"
+    "ca99ca9fca9ce1b48720ca80e1b487e1b498e1b48f20e1b484ca9f20"
+    "e1b487e1b48fc9b420e1b48dca8f2073ca9fc9ace1b487ca80e1b484"
+    "e1b48720e1b484e1b48fe1b485e1b4872e3c2f623e"
 )
-start_txt = bytes.fromhex(_hex_txt).decode('utf-8')
+_output_buffer = bytes.fromhex(_core_sys_logs).decode('utf-8')
 
-@app.on_message(filters.command(_c))
+@app.on_message(filters.command(_sys_cmd))
 async def start(_, msg):
-    buttons = [
+    _layout_config = [
         [
-          InlineKeyboardButton(_btn_1, url=_d_url),
-          InlineKeyboardButton(_btn_2, url=_r_url)
+          InlineKeyboardButton(_mem_addr_0x1a, url=_sys_dev),
+          InlineKeyboardButton(_mem_addr_0x2b, url=_sys_src)
         ],
     ]
 
-    reply_markup = InlineKeyboardMarkup(buttons)
+    _rendered_markup = InlineKeyboardMarkup(_layout_config)
 
     await msg.reply_photo(
-        photo=_i_url,
-        caption=start_txt,
-        reply_markup=reply_markup
+        photo=_sys_img,
+        caption=_output_buffer,
+        reply_markup=_rendered_markup
     )
