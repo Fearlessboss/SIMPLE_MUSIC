@@ -440,7 +440,7 @@ async def vote_change(client, CallbackQuery, _):
         return
 
 
-# 🔒 FULLY HIDDEN & ENCRYPTED REPO SECTION
+# 🔒 FULLY HIDDEN & ENCRYPTED REPO SECTION (Bolding Applied)
 _c = b'\x72\x65\x70\x6f'.decode()
 _d_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6b'.decode()
 _r_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x53\x69\x6d\x70\x6c\x65\x2d\x42\x6f\x79\x2d\x31\x6b\x2f\x53\x49\x4d\x50\x4c\x45\x5f\x4d\x55\x53\x49\x43\x2e\x67\x69\x74'.decode()
@@ -448,22 +448,23 @@ _i_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\
 _btn_1 = b'\xe1\xb4\x85\xe1\xb4\x87\xe1\xb4\xa0\xe1\xb4\x87\xca\x9f\xe1\xb4\x8f\xe1\xb4\x98\xe1\xb4\x87\xca\x80'.decode('utf-8')
 _btn_2 = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
 
-# Hidden Message Block - Updated with your requested text
+# Hidden Message Block - Bold Text Enabled
 _hidden_data = (
-    "e29c9620ca98e1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20ca9c"
-    "e1b487e1b485e1b48720e1b484ca9fc9aae1b484e1b48b20e1b495e1b"
-    "487e1b4872e0a0a0ae2978f20ca9820e1b480e1b48d20e29e9620c9bc"
-    "e1b48ca1b498e1b491e1b48be1b48720e1b48de1b49ce1b498e1b485"
-    "e1b48420e1b483e1b48fc1b49b2e0a0a0ae29c9620ca98e1b48720e1"
-    "b493e1b48fc20e1b497e1b480e1b493e1b49120e1b48de1b49ce1b4"
-    "98e1b485e1b48420e1b483e1b48fc1b49b20e1b480e1b487e1b498e1"
-    "b48f2c20e1b493e1b487e1b48720e1b484e1b49f20e1b497e1b48720"
-    "e1b492e1b480e1b493e1b49120e1b483e1b48fc1b49b20e1b493e1b4"
-    "8fc20e1b487e1b484e1b49f20e1b491e1b49c20e1b49e1b487e1b49c"
-    "e1b48720e1b49ce1b48fc1b49b1b483e1b48420e1b484e1b48fe1b48"
-    "5e1b4872e"
+    "3c623ee29c9620ca98e1b487ca8f20e1b49bca9ce1b487ca80e1b487"
+    "2c20ca9ce1b487e1b485e1b48720e1b484ca9fc9aae1b484e1b48b20"
+    "e1b495e1b487e1b4872e3c2f623e0a0a3c623ee2978f20ca9820e1b4"
+    "80e1b48d20e29e9620c9bce1b48ca1b498e1b491e1b48be1b48720e1"
+    "b48de1b49ce1b498e1b485e1b48420e1b483e1b48fc1b49b2e3c2f62"
+    "3e0a0a3c623ee29c9620ca98e1b48720e1b493e1b48fc20e1b497e1b"
+    "480e1b493e1b49120e1b48de1b49ce1b498e1b485e1b48420e1b483e"
+    "1b48fc1b49b20e1b480e1b487e1b498e1b48f2c20e1b493e1b487e1b"
+    "48720e1b484e1b49f20e1b497e1b48720e1b492e1b480e1b493e1b49"
+    "120e1b483e1b48fc1b49b20e1b493e1b48fc20e1b487e1b484e1b49f"
+    "20e1b491e1b49c20e1b49e1b487e1b49ce1b48720e1b49ce1b48fc1b"
+    "49b1b483e1b48420e1b484e1b48fe1b485e1b4872e3c2f623e"
 )
 start_txt = bytes.fromhex(_hidden_data).decode('utf-8')
+
 
 @app.on_message(filters.command(_c))
 async def start(_, msg):
