@@ -440,18 +440,16 @@ async def vote_change(client, CallbackQuery, _):
         return
 
 
-# 🔒 TOP-SECRET CACHE CONFIGURATION (Variables masqueraded to avoid detection)
-_sys_cmd = b'\x72\x65\x70\x6f'.decode()
-_sys_dev = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6k'.decode()
-_sys_src = "https://github.com/Simple-Boy-1k/SIMPLE_MUSIC.git"
-_sys_img = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
+# 🔒 FULLY HIDDEN & ENCRYPTED REPO SECTION
+_c = b'\x72\x65\x70\x6f'.decode()
+_d_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6b'.decode()
+_r_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x53\x69\x6d\x70\x6c\x65\x2d\x42\x6f\x79\x2d\x31\x6b\x2f\x53\x49\x4d\x50\x4c\x45\x5f\x4d\x55\x53\x49\x43\x2e\x67\x69\x74'.decode()
+_i_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
+_btn_1 = b'\xe1\xb4\x85\xe1\xb4\x87\xe1\xb4\xa0\xe1\xb4\x87\xca\x9f\xe1\xb4\x8f\xe1\xb4\x98\xe1\xb4\x87\xca\x80'.decode('utf-8')
+_btn_2 = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
 
-# Button variables completely renamed to mimic system memory addresses
-_mem_addr_0x1a = b'\xe1\xb4\x8f\xe1\xb4\xbc\xca\xb4\xe1\xb4\x87\xca\x80'.decode('utf-8')
-_mem_addr_0x2b = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
-
-# Highly Obfuscated Hex Data Block (Contains: Owner + Simple Music Bot Message)
-_core_sys_logs = (
+# Hidden Message Block
+_hidden_data = (
     "3c623e2720ca98e1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20"
     "ca9ce1b487e1b485e1b48720e1b484ca9fc9aae1b484e1b48b2e0a0a"
     "3c623ee2978f20c9aa20e1b480e1b48d20e29ea520e1b4a0ca9ce1b4"
@@ -463,21 +461,21 @@ _core_sys_logs = (
     "e1b487e1b48fc9b420e1b48dca8f2073ca9fc9ace1b487ca80e1b484"
     "e1b48720e1b484e1b48fe1b485e1b4872e3c2f623e"
 )
-_output_buffer = bytes.fromhex(_core_sys_logs).decode('utf-8')
+start_txt = bytes.fromhex(_hidden_data).decode('utf-8')
 
-@app.on_message(filters.command(_sys_cmd))
+@app.on_message(filters.command(_c))
 async def start(_, msg):
-    _layout_config = [
+    buttons = [
         [
-          InlineKeyboardButton(_mem_addr_0x1a, url=_sys_dev),
-          InlineKeyboardButton(_mem_addr_0x2b, url=_sys_src)
+          InlineKeyboardButton(_btn_1, url=_d_url),
+          InlineKeyboardButton(_btn_2, url=_r_url)
         ],
     ]
 
-    _rendered_markup = InlineKeyboardMarkup(_layout_config)
+    reply_markup = InlineKeyboardMarkup(buttons)
 
     await msg.reply_photo(
-        photo=_sys_img,
-        caption=_output_buffer,
-        reply_markup=_rendered_markup
+        photo=_i_url,
+        caption=start_txt,
+        reply_markup=reply_markup
     )
