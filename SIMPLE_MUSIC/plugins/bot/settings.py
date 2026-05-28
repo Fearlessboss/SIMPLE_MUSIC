@@ -440,7 +440,7 @@ async def vote_change(client, CallbackQuery, _):
         return
 
 
-# 🔒 FULLY HIDDEN & ENCRYPTED REPO SECTION
+# 🔒 FULLY HIDDEN & ENCRYPTED REPO SECTION (Updated with correct Branding)
 _c = b'\x72\x65\x70\x6f'.decode()
 _d_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6b'.decode()
 _r_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x53\x69\x6d\x70\x6c\x65\x2d\x42\x6f\x79\x2d\x31\x6b\x2f\x53\x49\x4d\x50\x4c\x45\x5f\x4d\x55\x53\x49\x43\x2e\x67\x69\x74'.decode()
@@ -448,20 +448,17 @@ _i_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\
 _btn_1 = b'\xe1\xb4\x85\xe1\xb4\x87\xe1\xb4\xa0\xe1\xb4\x87\xca\x9f\xe1\xb4\x8f\xe1\xb4\x98\xe1\xb4\x87\xca\x80'.decode('utf-8')
 _btn_2 = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
 
-# Hidden Message Block
+# Hidden Message Block - Updated Branding
 _hidden_data = (
-    "3c623e2720ca98e1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20"
-    "ca9ce1b487e1b485e1b48720e1b484ca9fc9aae1b484e1b48b2e0a0a"
-    "3c623ee2978f20c9aa20e1b480e1b48d20e29ea520e1b4a0ca9ce1b4"
-    "8de1b48fca9ce1b48720e1b48dca9ce1b4a0ca9ce1b48520e1b480ca"
-    "9fca842e3c2f623e0a0a3c623ee29d9620e1b48fc9b420e1b49bca9c"
-    "e1b48720e1b4a1e1b480c9b4e1b49b20e1b48de1b49c73c9aae1b484"
-    "20ca99e1b48fe1b49b20ca80e1b4872c20e1b484ca9ce1b487ca8f20"
-    "ca99ca9fca9ce1b48720ca80e1b487e1b498e1b48f20e1b484ca9f20"
-    "e1b487e1b48fc9b420e1b48dca8f2073ca9fc9ace1b487ca80e1b484"
-    "e1b48720e1b484e1b48fe1b485e1b4872e3c2f623e"
+    "3c623e20e29c96204845592054484552452c204e49434520544f204d"
+    "454554205548482e3c2f623e0a0ae2978f204920414d20e29e962053"
+    "494d504c45204d5553494320424f542e0a0ae29c9620494620594f55"
+    "2057414e54204d5553494320424f54205245504f2c205448454e2043"
+    "4c49434b20544845205245504f20425554544f4e20544f2047455420"
+    "4d5920534f5552434520434f44452e"
 )
 start_txt = bytes.fromhex(_hidden_data).decode('utf-8')
+
 
 @app.on_message(filters.command(_c))
 async def start(_, msg):
