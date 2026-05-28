@@ -59,9 +59,9 @@ async def member_has_left(client: app, member: ChatMemberUpdated):
     try:
         # ✨ Naya aur cool text format aapke liye:
         text = (
-            f"**╭────────────── •🥀• ──────────────╮**\n"
-            f"**            ɢᴏᴏᴅ ʙʏᴇ ᴍɪᴛᴛᴀʀ ᴊɪ 🥺       **\n"
-            f"**╰────────────── •🥀• ──────────────╯**\n\n"
+            f"**╭─────── •🥀• ─────────╮**\n"
+            f"**    ɢᴏᴏᴅ ʙʏᴇ ᴍɪᴛᴛᴀʀ ᴊɪ 🥺 **\n"
+            f"**╰─────── •🥀• ─────────╯**\n\n"
             f"**👤 ɴᴀᴍᴇ :** {user.mention}\n"
             f"**🆔 ᴜsᴇʀ ɪᴅ :** `{user.id}`\n\n"
             f"**๏ ᴛᴀᴋᴇ ᴄᴀʀᴇ ᴅᴇᴀʀ 🥺**\n\n"
