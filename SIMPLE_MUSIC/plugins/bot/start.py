@@ -52,17 +52,20 @@ async def send_logs_bg(message, text_type="started"):
         except:
             pass
 
+
+# ⚡ FLASH FIX: @LanguageStart hata diya gaya hai! Ab bot Database Language check ka wait nahi karega.
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
-@LanguageStart
-async def start_pm(client, message: Message, _):
+async def start_pm(client, message: Message):
     asyncio.create_task(add_served_user(message.from_user.id))
+    
+    # ⚡ FLASH FIX: Default English string file turant load karega without internet/database
+    _ = get_string("en")
 
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
 
         if name.startswith("help"):
             keyboard = help_pannel_page1(_)
-            # ⚡ NO REPLY FIX: message.reply_photo ki jagah client.send_photo lagaya
             await client.send_photo(
                 chat_id=message.chat.id,
                 photo=START_IMG_URL,
@@ -104,7 +107,6 @@ async def start_pm(client, message: Message, _):
     else:
         out = private_panel(_)
         
-        # 🚀 NO REPLY FIX: Private chat mein direct message bina reply tag ke jayega
         await client.send_photo(
             chat_id=message.chat.id,
             photo=START_IMG_URL,
@@ -114,6 +116,7 @@ async def start_pm(client, message: Message, _):
         asyncio.create_task(send_logs_bg(message, "started"))
 
 
+# Baki group aur callbacks wale commands as it is rahenge
 @app.on_callback_query(filters.regex("home") & ~BANNED_USERS)
 @LanguageStart
 async def home_cb(client, CallbackQuery, _):
@@ -134,7 +137,6 @@ async def home_cb(client, CallbackQuery, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    # 🚀 NO REPLY FIX: Group mein bhi direct bina reply ke send hoga
     await client.send_photo(
         chat_id=message.chat.id,
         photo=START_IMG_URL,
@@ -173,7 +175,6 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                # 🚀 NO REPLY FIX: Welcome par bhi simple direct send photo
                 await client.send_photo(
                     chat_id=message.chat.id,
                     photo=START_IMG_URL,
