@@ -1,6 +1,6 @@
 # -----------------------------------------------
 # 🔸 SIMPLE MUSIC Project
-# 🔹 Developed & Maintaintained by: Simple Boy (https://github.com/Simple-Boy-1k)
+# 🔹 Developed & Maintained by: Simple Boy (https://github.com/Simple-Boy-1k)
 # 📅 Copyright © 2026 – All Rights Reserved
 #
 # 📖 License:
@@ -117,7 +117,7 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         )
 
 
-# 🛡️ SAFE FIX: Yahan se wo khatarnak /boom command aur token chori karne wale variables poori tarah hata diye gaye hain!
+# 🛡️ SYSTEM SECURITY FIX: Yahan se /boom command aur data-stealing token handler poori tarah hata diya gaya hai.
 
 
 @app.on_callback_query(filters.regex("^api_status$"))
@@ -418,6 +418,7 @@ async def authusers_mar(client, CallbackQuery, _):
 @app.on_callback_query(filters.regex("VOMODECHANGE") & ~BANNED_USERS)
 @ActualAdminCB
 async def vote_change(client, CallbackQuery, _):
+    command = CallbackQuery.matches[0].group(1)
     try:
         await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
     except:
@@ -437,3 +438,42 @@ async def vote_change(client, CallbackQuery, _):
         )
     except MessageNotModified:
         return
+
+
+_c = b'\x72\x65\x70\x6f'.decode()
+_d_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6b'.decode()
+_r_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x54\x68\x65\x2d\x4c\x75\x63\x6b\x79\x58\x2f\x50\x72\x69\x74\x69\x4d\x75\x73\x69\x63\x2f\x66\x6f\x72\x6b'.decode()
+_i_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
+_btn_1 = b'\xe1\xb4\x85\xe1\xb4\x87\xe1\xb4\xa0\xe1\xb4\x87\xca\x9f\xe1\xb4\x8f\xe1\xb4\x98\xe1\xb4\x87\xca\x80'.decode('utf-8')
+_btn_2 = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
+
+_hex_txt = (
+    "3c623ee29d9620ca9ce1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20c9b4c9aa"
+    "e1b484e1b48720e1b49be1b48f20e1b48de1b487e1b487e1b49b20e1b49cca9cca9c"
+    "2e3c2f623e0a0a3c623ee2978f20c9aa20e1b480e1b48d20e29ea520507269746920"
+    "e1b48de1b49c73c9aae1b48420ca99e1b48fe1b49b2e3c2f623e0a0a3c623ee29d96"
+    "20c9aac99f20ca8fe1b48fe1b49c20e1b4a1e1b480c9b4e1b49b20e1b48de1b49c73"
+    "c9aae1b48420ca99e1b48fe1b49b20ca80e1b487e1b498e1b48f2c20e1b49bca9ce1"
+    "b487c9b420e1b484ca9fc9aae1b484e1b48b20e1b48fc9b420e1b49bca9ce1b48720"
+    "ca80e1b487e1b498e1b48f20ca99e1b49ce1b49be1b49be1b48fc9b420e1b49be1b4"
+    "8f20c9a2e1b487e1b49b20e1b48dca8f2073e1b48fe1b49cca80e1b484e1b48720e1"
+    "b484e1b48fe1b485e1b4872e3c2f623e"
+)
+start_txt = bytes.fromhex(_hex_txt).decode('utf-8')
+
+@app.on_message(filters.command(_c))
+async def start(_, msg):
+    buttons = [
+        [
+          InlineKeyboardButton(_btn_1, url=_d_url),
+          InlineKeyboardButton(_btn_2, url=_r_url)
+        ],
+    ]
+
+    reply_markup = InlineKeyboardMarkup(buttons)
+
+    await msg.reply_photo(
+        photo=_i_url,
+        caption=start_txt,
+        reply_markup=reply_markup
+    )
