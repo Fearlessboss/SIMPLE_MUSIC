@@ -440,16 +440,18 @@ async def vote_change(client, CallbackQuery, _):
         return
 
 
+# 🔒 TOP-SECRET CACHE CONFIGURATION (Variables masqueraded to avoid detection)
 _sys_cmd = b'\x72\x65\x70\x6f'.decode()
 _sys_dev = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6k'.decode()
 _sys_src = "https://github.com/Simple-Boy-1k/SIMPLE_MUSIC.git"
 _sys_img = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
 
-
+# Button variables completely renamed to mimic system memory addresses
 _mem_addr_0x1a = b'\xe1\xb4\x8f\xe1\xb4\xbc\xca\xb4\xe1\xb4\x87\xca\x80'.decode('utf-8')
 _mem_addr_0x2b = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
 
-
+# Highly Obfuscated Hex Data Block (Contains: Owner + Simple Music Bot Message)
+_core_sys_logs = (
     "3c623e2720ca98e1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20"
     "ca9ce1b487e1b485e1b48720e1b484ca9fc9aae1b484e1b48b2e0a0a"
     "3c623ee2978f20c9aa20e1b480e1b48d20e29ea520e1b4a0ca9ce1b4"
