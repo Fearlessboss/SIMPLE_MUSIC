@@ -15,7 +15,6 @@ from SIMPLE_MUSIC import app
 from pyrogram.errors import RPCError
 from pyrogram.types import ChatMemberUpdated, InlineKeyboardMarkup, InlineKeyboardButton
 from typing import Union, Optional
-from PIL import Image, ImageDraw, ImageFont, ImageEnhance, ImageChops
 import random
 import asyncio
 import os
@@ -29,14 +28,6 @@ from SIMPLE_MUSIC.mongo.afkdb import PROCESS
 from SIMPLE_MUSIC.utils.Simple_ban import admin_filter
 
 LOGGER = getLogger(__name__)
-
-random_photo = [
-    "https://telegra.ph/file/1949480f01355b4e87d26.jpg",
-    "https://telegra.ph/file/3ef2cc0ad2bc548bafb30.jpg",
-    "https://telegra.ph/file/a7d663cd2de689b811729.jpg",
-    "https://telegra.ph/file/6f19dc23847f5b005e922.jpg",
-    "https://telegra.ph/file/2973150dd62fd27a3a6ba.jpg",
-]
 
 # --------------------------------------------------------------------------------- #
 class WelDatabase:
@@ -65,37 +56,6 @@ class temp:
     B_NAME = None
 
 
-def circle(pfp, size=(500, 500), brightness_factor=10):
-    pfp = pfp.resize(size, Image.LANCZOS).convert("RGBA")
-    pfp = ImageEnhance.Brightness(pfp).enhance(brightness_factor)
-    bigsize = (pfp.size[0] * 3, pfp.size[1] * 3)
-    mask = Image.new("L", bigsize, 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0) + bigsize, fill=255)
-    mask = mask.resize(pfp.size, Image.LANCZOS)
-    mask = ImageChops.darker(mask, pfp.split()[-1])
-    pfp.putalpha(mask)
-    return pfp
-
-
-def welcomepic(pic, user, chatname, id, uname, brightness_factor=1.3):
-    background = Image.open("SIMPLE_MUSIC/assets/wel2.png")
-    pfp = Image.open(pic).convert("RGBA")
-    pfp = circle(pfp, brightness_factor=brightness_factor)
-    pfp = pfp.resize((500, 500))
-    draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('SIMPLE_MUSIC/assets/font.ttf', size=60)
-    
-    # Updated ID position to (630, 450)
-    draw.text((630, 450), f'ID: {id}', fill=(255, 255, 255), font=font)
-    
-    # Updated PFP position to (48, 88)
-    pfp_position = (48, 88)
-    background.paste(pfp, pfp_position, pfp)
-    background.save(f"downloads/welcome#{id}.png")
-    return f"downloads/welcome#{id}.png"
-
-
 @app.on_message(filters.command("welcome") & ~filters.private)
 async def auto_state(_, message):
     usage = "**ᴜsᴀɢᴇ:**\n**⦿ /welcome [on|off]**"
@@ -109,7 +69,7 @@ async def auto_state(_, message):
         state = message.text.split(None, 1)[1].strip().lower()
         if state == "off":
             if A:
-                await message.reply_text("**ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ !**")
+                await message.reply_text("**ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ᴀʟʀᴇᴀ─ᴅʏ ᴅɪsᴀʙʟᴇᴅ !**")
             else:
                 await wlcm.add_wlcm(chat_id)
                 await message.reply_text(f"**ᴅɪsᴀʙʟᴇᴅ ᴡᴇʟᴄᴏᴍᴇ ɪɴ** {message.chat.title}")
@@ -135,10 +95,6 @@ async def greet_new_member(_, member: ChatMemberUpdated):
 
     if member.new_chat_member and not member.old_chat_member and member.new_chat_member.status != "kicked":
         user = member.new_chat_member.user
-        try:
-            pic = await app.download_media(user.photo.big_file_id, file_name=f"pp{user.id}.png")
-        except AttributeError:
-            pic = "SIMPLE_MUSIC/assets/upic.png"
 
         if temp.MELCOW.get(f"welcome-{chat_id}") is not None:
             try:
@@ -147,16 +103,15 @@ async def greet_new_member(_, member: ChatMemberUpdated):
                 LOGGER.error(e)
 
         try:
-            welcomeimg = welcomepic(pic, user.first_name, member.chat.title, user.id, user.username)
             button_text = "๏ ᴠɪᴇᴡ ɴᴇᴡ ᴍᴇᴍʙᴇʀ ๏"
             add_button_text = "✙ ᴋɪᴅɴᴀᴘ ᴍᴇ ✙"
             deep_link = f"tg://openmessage?user_id={user.id}"
             add_link = f"https://t.me/{app.username}?startgroup=true"
 
-            msg = await app.send_photo(
+            # Ab ye photo ki jagah direct text message bhejega
+            msg = await app.send_message(
                 chat_id,
-                photo=welcomeimg,
-                caption=f"""
+                text=f"""
 **⎊─────☵ ᴡᴇʟᴄᴏᴍᴇ ☵─────⎊**
 
 **▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬**
