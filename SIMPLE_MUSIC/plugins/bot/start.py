@@ -144,42 +144,21 @@ async def start_gp(client, message: Message, _):
 async def welcome(client, message: Message):
     for member in message.new_chat_members:
         try:
-            language = await get_lang(message.chat.id)
-            _ = get_string(language)
-
+            # Agar koi banned user group me aata hai toh use ban karne ke liye security
             if await is_banned_user(member.id):
                 try:
                     await message.chat.ban_member(member.id)
                 except:
                     pass
 
+            # Agar bot khud group me add hota hai toh database me chat add ho jayegi bina welcome message bheje
             if member.id == app.id:
                 if message.chat.type != ChatType.SUPERGROUP:
-                    await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
 
                 if message.chat.id in await blacklisted_chats():
-                    await message.reply_text(
-                        _["start_5"].format(
-                            app.mention,
-                            f"https://t.me/{app.username}?start=sudolist",
-                            config.SUPPORT_CHAT,
-                        ),
-                        disable_web_page_preview=True,
-                    )
                     return await app.leave_chat(message.chat.id)
 
-                out = start_panel(_)
-                await message.reply_photo(
-                    START_IMG_URL,
-                    caption=_["start_3"].format(
-                        message.from_user.mention,
-                        app.mention,
-                        message.chat.title,
-                        app.mention,
-                    ),
-                    reply_markup=InlineKeyboardMarkup(out),
-                )
                 await add_served_chat(message.chat.id)
                 await message.stop_propagation()
         except Exception as ex:
