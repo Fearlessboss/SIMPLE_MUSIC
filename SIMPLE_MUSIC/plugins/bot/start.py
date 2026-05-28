@@ -55,7 +55,6 @@ async def send_logs_bg(message, text_type="started"):
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
-    # User ko database mein background mein add karenge taaki speed slow na ho
     asyncio.create_task(add_served_user(message.from_user.id))
 
     if len(message.text.split()) > 1:
@@ -63,8 +62,10 @@ async def start_pm(client, message: Message, _):
 
         if name.startswith("help"):
             keyboard = help_pannel_page1(_)
-            await message.reply_photo(
-                START_IMG_URL,
+            # ⚡ NO REPLY FIX: message.reply_photo ki jagah client.send_photo lagaya
+            await client.send_photo(
+                chat_id=message.chat.id,
+                photo=START_IMG_URL,
                 caption=_['help_1'].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -93,7 +94,7 @@ async def start_pm(client, message: Message, _):
                     InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
                 ],
             ])
-            await app.send_photo(
+            await client.send_photo(
                 chat_id=message.chat.id,
                 photo=thumbnail,
                 caption=searched_text,
@@ -103,10 +104,10 @@ async def start_pm(client, message: Message, _):
     else:
         out = private_panel(_)
         
-        # 🚀 SPEED FIX 1: Bot stats aur db counting ka wait kiye bina fake placeholder lagaya 
-        # taaki bot instantly response kare (Ye standard fast bots ka tarika hai)
-        await message.reply_photo(
-            START_IMG_URL,
+        # 🚀 NO REPLY FIX: Private chat mein direct message bina reply tag ke jayega
+        await client.send_photo(
+            chat_id=message.chat.id,
+            photo=START_IMG_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention, "Mina 0.5s", "0.2 GB", "1.2%", "14%", "⚡ Fast", "🔥 Active"),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -122,7 +123,6 @@ async def home_cb(client, CallbackQuery, _):
         pass
     out = private_panel(_)
     
-    # 🚀 SPEED FIX 2: Callback query (Home button) par bhi instant reply placeholder laga diya
     await CallbackQuery.edit_message_text(
         text=_["start_2"].format(CallbackQuery.from_user.mention, app.mention, "Mina 0.5s", "0.2 GB", "1.2%", "14%", "⚡ Fast", "🔥 Active"),
         reply_markup=InlineKeyboardMarkup(out),
@@ -134,8 +134,10 @@ async def home_cb(client, CallbackQuery, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    await message.reply_photo(
-        START_IMG_URL,
+    # 🚀 NO REPLY FIX: Group mein bhi direct bina reply ke send hoga
+    await client.send_photo(
+        chat_id=message.chat.id,
+        photo=START_IMG_URL,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -171,8 +173,10 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                await message.reply_photo(
-                    START_IMG_URL,
+                # 🚀 NO REPLY FIX: Welcome par bhi simple direct send photo
+                await client.send_photo(
+                    chat_id=message.chat.id,
+                    photo=START_IMG_URL,
                     caption=_["start_3"].format(
                         message.from_user.mention,
                         app.mention,
