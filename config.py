@@ -141,11 +141,9 @@ DEBUG_IGNORE_LOG = True
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━
-# ❖ ᴍ ᴇ ᴅ ɪ ᴀ   ᴜ ʀ ʟ s ❖
+# ❖ ɪ ᴍ ᴀ ɢ ᴇ   ᴜ ʀ ʟ s ❖
 # ━━━━━━━━━━━━━━━━━━━━━━━
-
-START_VIDEO_URL = getenv("START_VIDEO_URL", "https://files.catbox.moe/eqvggb.mp4")
-
+START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/z1h6ow.jpg")
 PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/z1h6ow.jpg")
 HELP_IMG_URL = getenv("HELP_IMG_URL", "https://img.sanishtech.com/u/aa63cf917e3a4e0c380380ae9f9d08c5.jpg")
 PLAYLIST_IMG_URL = "https://files.catbox.moe/lrwbj6.jpg"
