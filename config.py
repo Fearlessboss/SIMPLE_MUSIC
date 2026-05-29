@@ -144,7 +144,7 @@ DEBUG_IGNORE_LOG = True
 # ❖ ɪ ᴍ ᴀ ɢ ᴇ   ᴜ ʀ ʟ s ❖
 # ━━━━━━━━━━━━━━━━━━━━━━━
 START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/z1h6ow.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/z1h6ow.jpg")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/j40lbb.png")
 HELP_IMG_URL = getenv("HELP_IMG_URL", "https://files.catbox.moe/b7qhd8.jpg")
 PLAYLIST_IMG_URL = "https://files.catbox.moe/lrwbj6.jpg"
 STATS_IMG_URL = "https://files.catbox.moe/z1h6ow.jpg"
