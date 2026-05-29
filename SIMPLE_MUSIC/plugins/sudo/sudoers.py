@@ -76,14 +76,14 @@ async def sudoers_list(client, message: Message):
     keyboard = [[InlineKeyboardButton("๏ ᴠɪᴇᴡ sᴜᴅᴏʟɪsᴛ ๏", callback_data="check_sudo_list", **_get_style(r1))]]
     reply_markups = InlineKeyboardMarkup(keyboard)
     
-    await message.reply_video(video="https://telegra.ph/file/7fceefa2fb3e21f5fd84e.mp4", caption="**» ᴄʜᴇᴄᴋ sᴜᴅᴏ ʟɪsᴛ ʙʏ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ.**\n\n**» ɴᴏᴛᴇ:**  ᴏɴʟʏ sᴜᴅᴏ ᴜsᴇʀs ᴄᴀɴ ᴠɪᴇᴡ. ", reply_markup=reply_markups)
+    await message.reply_photo(photo="https://img.sanishtech.com/u/634954cfa576380fda54874a69b96c05.jpg", caption="**» ᴄʜᴇᴄᴋ sᴜᴅᴏ ʟɪsᴛ ʙʏ ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ.**\n\n**» ɴᴏᴛᴇ:**  ᴏɴʟʏ sᴜᴅᴏ ᴜsᴇʀs ᴄᴀɴ ᴠɪᴇᴡ. ", reply_markup=reply_markups)
     
 
 @app.on_callback_query(filters.regex("^check_sudo_list$"))
 async def check_sudo_list(client, callback_query: CallbackQuery):
     keyboard = []
     if callback_query.from_user.id not in SUDOERS:
-        return await callback_query.answer("𝐍𝐢𝐤𝐚𝐥 𝐑𝐚𝐧𝐝𝐢 𝐁𝐚𝐥𝐚 𝐒𝐮𝐝𝐨𝐥𝐢𝐬𝐭 𝐃𝐞𝐤𝐡𝐧𝐞 𝐀𝐚𝐲𝐚 𝐇𝐚𝐢 𝐛𝐚𝐝𝐚🖕😎😂", show_alert=True)
+        return await callback_query.answer("𝗡𝗶𝗸𝗮𝗹 𝗕𝘀𝗱𝗸 😂 𝗦𝘂𝗱𝗼𝗹𝗶𝘀𝘁 𝗗𝗲𝗸𝗵𝗻𝗲 𝗔𝘆𝗮 𝗛𝗮𝗶 𝗕𝗮𝗱𝗮 🤣 𝗞𝗼𝗶 𝗞𝗮𝗮𝗺 𝗞𝗿𝗹𝗲 𝗝𝗮𝗸𝗲 🖕😎😂", show_alert=True)
     else:
         user = await app.get_users(OWNER_ID)
 
