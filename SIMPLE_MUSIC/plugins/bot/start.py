@@ -36,8 +36,16 @@ from SIMPLE_MUSIC.utils.decorators.language import LanguageStart
 from SIMPLE_MUSIC.utils.formatters import get_readable_time
 from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_panel
 from strings import get_string
-# YAHAN CHANGE KIYA HAI: START_VIDEO_URL ke sath START_IMG_URL bhi import kiya hai
-from config import BANNED_USERS, START_VIDEO_URL, START_IMG_URL 
+
+# SARE ALAG ALAG VIDEO AUR IMAGE VARIABLES IMPORT KIYE HAIN
+from config import (
+    BANNED_USERS, 
+    START_PRIVATE_VIDEO_URL, 
+    START_GROUP_VIDEO_URL, 
+    HELP_VIDEO_URL, 
+    WELCOME_VIDEO_URL, 
+    START_IMG_URL
+)
 
 # Logger group mein notification bhejne ka background helper
 async def send_logs_bg(message, text_type="started"):
@@ -59,7 +67,6 @@ async def send_logs_bg(message, text_type="started"):
 async def start_pm(client, message: Message):
     asyncio.create_task(add_served_user(message.from_user.id))
     
-    # ⚡ FLASH FIX: Default English string file turant load karega without internet/database
     _ = get_string("en")
 
     if len(message.text.split()) > 1:
@@ -67,9 +74,10 @@ async def start_pm(client, message: Message):
 
         if name.startswith("help"):
             keyboard = help_pannel_page1(_)
+            # 1. HELP VIDEO SET KIYA
             await client.send_video(
                 chat_id=message.chat.id,
-                video=START_VIDEO_URL,
+                video=HELP_VIDEO_URL,
                 caption=_['help_1'].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -97,7 +105,7 @@ async def start_pm(client, message: Message):
                     InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
                 ],
             ])
-            # YAHAN CHANGE KIYA HAI: 'thumbnail' variable hata kar 'START_IMG_URL' laga diya hai
+            # INFO WALE ME APNI FIXED IMAGE SET KI
             await client.send_photo(
                 chat_id=message.chat.id,
                 photo=START_IMG_URL,
@@ -108,9 +116,10 @@ async def start_pm(client, message: Message):
     else:
         out = private_panel(_)
         
+        # 2. PRIVATE DM START VIDEO SET KIYA
         await client.send_video(
             chat_id=message.chat.id,
-            video=START_VIDEO_URL,
+            video=START_PRIVATE_VIDEO_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention, "Mina 0.5s", "0.2 GB", "1.2%", "14%", "⚡ Fast", "🔥 Active"),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -138,9 +147,10 @@ async def home_cb(client, CallbackQuery, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
+    # 3. GROUP START VIDEO SET KIYA
     await client.send_video(
         chat_id=message.chat.id,
-        video=START_VIDEO_URL,
+        video=START_GROUP_VIDEO_URL,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -176,9 +186,10 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
+                # 4. BOT WELCOME VIDEO SET KIYA
                 await client.send_video(
                     chat_id=message.chat.id,
-                    video=START_VIDEO_URL,
+                    video=WELCOME_VIDEO_URL,
                     caption=_["start_3"].format(
                         message.from_user.mention,
                         app.mention,
