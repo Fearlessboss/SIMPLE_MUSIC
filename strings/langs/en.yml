@@ -145,8 +145,8 @@ str_2 : "❖ ᴠᴀʟɪᴅ sᴛʀᴇᴀᴍ ᴠᴇʀɪғɪᴇᴅ.\n\nᴘʀᴏᴄ�
 str_3 : "❖ ғᴀɪʟᴇᴅ ᴛᴏ sᴛʀᴇᴀᴍ ʏᴏᴜᴛᴜʙᴇ ʟɪᴠᴇ sᴛʀᴇᴀᴍ, ɴᴏ ʟɪᴠᴇ ꜰᴏʀᴍᴀᴛ ꜰᴏᴜɴᴅ."
 
 ping_1 : "❖ {0} ɪs ᴘɪɴɢɪɴɢ..."
-ping_2 : "<blockquote<b>● ᴘɪɴɢ : <code>{0}ᴍs</blockquote><blockquote expandable></code>\n\n<u>{1} sᴛᴀᴛɪsᴛɪᴄs :</u>\n\n● ᴜᴩᴛɪᴍᴇ : {2}\n● ʀᴀᴍ ᴜsᴀɢᴇ : {3}\n● ᴄᴩᴜ ᴜsᴀɢᴇ : {4}\n● ᴅɪsᴋ ᴜsᴀɢᴇ : {5}\n● ᴩʏ-ᴛɢᴄᴀʟʟs : <code>{6}ᴍs</code></b></blockquote>"
-queue_1 : "❖ ғᴇᴛᴄʜɪɴɢ ǫᴜᴇᴜᴇ...\n\nᴘʟᴇᴀsᴇ ᴡᴀɪᴛ..."
+ping_2 : "<blockquote<b>● ᴘɪɴɢ : <code>{0}ᴍs</code>\n\n<u>{1} sᴛᴀᴛɪsᴛɪᴄs :</u>\n\n● ᴜᴩᴛɪᴍᴇ : {2}\n● ʀᴀᴍ ᴜsᴀɢᴇ : {3}\n● ᴄᴩᴜ ᴜsᴀɢᴇ : {4}\n● ᴅɪsᴋ ᴜsᴀɢᴇ : {5}\n● ᴩʏ-ᴛɢᴄᴀʟʟs : <code>{6}ᴍs</code></b></blockquote>"
+queue_ : "❖ ғᴇᴛᴄʜɪɴɢ ǫᴜᴇᴜᴇ...\n\nᴘʟᴇᴀsᴇ ᴡᴀɪᴛ..."
 queue_2 : "❖ ǫᴜᴇᴜᴇ ᴇᴍᴘᴛʏ."
 queue_3 : "<u>❖ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴄʜᴇᴄᴋ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴛʜᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs :</u> <a href={0}>ʜᴇʀᴇ</a>"
 queue_4 : "<blockquote><b>✨ ᴛʀᴀᴄᴋ ʀᴇsᴇʀᴠᴇᴅ — ᴘʟᴀʏɪɴɢ sᴏᴏɴ : #{0}</b></blockquote>\n<blockquote expandable><b>🎧 sᴏɴɢ :</b> {1}\n<b>🕚 ʟᴇɴɢᴛʜ :</b> {2} ᴍɪɴs\n<b>🥀 ʀᴇǫᴜᴇsᴛᴇʀ :</b> {3}\n\n<b>🎶 ɢᴇᴛ ʀᴇᴀᴅʏ! ʏᴏᴜʀ sᴏɴɢ ɪs ᴄᴏᴍɪɴɢ ᴜᴘ ɴᴇxᴛ.</b></blockquote>"
