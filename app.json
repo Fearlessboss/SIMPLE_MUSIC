@@ -77,29 +77,9 @@
       "value": "https://t.me/music_Bot_Adda",
       "required": false
     },
-    "INFO_IMG_URL": {
-      "description": "Image URL for /info command (Yahan Info command wali photo ka link daalna hai, YouTube thumbnail ki jagah yahi dikhegi).",
+    "START_IMG_URL": {
+      "description": "Image URL for Start command.",
       "value": "https://files.catbox.moe/z1h6ow.jpg",
-      "required": false
-    },
-    "START_PRIVATE_VIDEO_URL": {
-      "description": "Video URL for Bot PM Start command.",
-      "value": "https://files.catbox.moe/eqvggb.mp4",
-      "required": false
-    },
-    "START_GROUP_VIDEO_URL": {
-      "description": "Video URL for Group Start command.",
-      "value": "https://files.catbox.moe/eqvggb.mp4",
-      "required": false
-    },
-    "HELP_VIDEO_URL": {
-      "description": "Video URL for Help menu.",
-      "value": "https://files.catbox.moe/eqvggb.mp4",
-      "required": false
-    },
-    "WELCOME_VIDEO_URL": {
-      "description": "Video URL for Welcome message in groups.",
-      "value": "https://files.catbox.moe/eqvggb.mp4",
       "required": false
     },
     "PING_IMG_URL": {
@@ -108,8 +88,8 @@
       "required": false
     },
     "HELP_IMG_URL": {
-      "description": "Image URL for Help menu fallback.",
-      "value": "https://img.sanishtech.com/u/aa63cf917e3a4e0c380380ae9f9d08c5.jpg",
+      "description": "Image URL for Help menu.",
+      "value": "https://files.catbox.moe/z1h6ow.jpg",
       "required": false
     },
     "BUTTON_COLOUR": {
