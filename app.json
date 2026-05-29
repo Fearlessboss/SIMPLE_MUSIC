@@ -89,7 +89,7 @@
     },
     "HELP_IMG_URL": {
       "description": "Image URL for Help menu.",
-      "value": "https://files.catbox.moe/z1h6ow.jpg",
+      "value": "https://img.sanishtech.com/u/aa63cf917e3a4e0c380380ae9f9d08c5.jpg",
       "required": false
     },
     "BUTTON_COLOUR": {
