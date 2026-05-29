@@ -36,7 +36,8 @@ from SIMPLE_MUSIC.utils.decorators.language import LanguageStart
 from SIMPLE_MUSIC.utils.formatters import get_readable_time
 from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_panel
 from strings import get_string
-from config import BANNED_USERS, START_IMG_URL
+# YAHAN CHANGE KIYA HAI: START_VIDEO_URL ke sath START_IMG_URL bhi import kiya hai
+from config import BANNED_USERS, START_VIDEO_URL, START_IMG_URL 
 
 # Logger group mein notification bhejne ka background helper
 async def send_logs_bg(message, text_type="started"):
@@ -66,9 +67,9 @@ async def start_pm(client, message: Message):
 
         if name.startswith("help"):
             keyboard = help_pannel_page1(_)
-            await client.send_photo(
+            await client.send_video(
                 chat_id=message.chat.id,
-                photo=START_IMG_URL,
+                video=START_VIDEO_URL,
                 caption=_['help_1'].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -84,7 +85,6 @@ async def start_pm(client, message: Message):
                 title = result["title"]
                 duration = result["duration"]
                 views = result["viewCount"]["short"]
-                thumbnail = result["thumbnails"][0]["url"].split("?")[0]
                 channellink = result["channel"]["link"]
                 channel = result["channel"]["name"]
                 link = result["link"]
@@ -97,9 +97,10 @@ async def start_pm(client, message: Message):
                     InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
                 ],
             ])
+            # YAHAN CHANGE KIYA HAI: 'thumbnail' variable hata kar 'START_IMG_URL' laga diya hai
             await client.send_photo(
                 chat_id=message.chat.id,
-                photo=thumbnail,
+                photo=START_IMG_URL,
                 caption=searched_text,
                 reply_markup=key,
             )
@@ -107,9 +108,9 @@ async def start_pm(client, message: Message):
     else:
         out = private_panel(_)
         
-        await client.send_photo(
+        await client.send_video(
             chat_id=message.chat.id,
-            photo=START_IMG_URL,
+            video=START_VIDEO_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention, "Mina 0.5s", "0.2 GB", "1.2%", "14%", "⚡ Fast", "🔥 Active"),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -137,9 +138,9 @@ async def home_cb(client, CallbackQuery, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    await client.send_photo(
+    await client.send_video(
         chat_id=message.chat.id,
-        photo=START_IMG_URL,
+        video=START_VIDEO_URL,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -175,9 +176,9 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                await client.send_photo(
+                await client.send_video(
                     chat_id=message.chat.id,
-                    photo=START_IMG_URL,
+                    video=START_VIDEO_URL,
                     caption=_["start_3"].format(
                         message.from_user.mention,
                         app.mention,
