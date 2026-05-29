@@ -93,6 +93,13 @@ def private_panel(_):
         ],
         [
             InlineKeyboardButton(
+                text=_["S_B_7"], 
+                url="https://github.com/Simple-Boy-1k/SIMPLE_MUSIC",
+                **get_style(3)
+            )
+        ]‚
+        [
+            InlineKeyboardButton(
                 text=_["S_B_4"], 
                 callback_data="settingsback_helper",
                 **get_style(3)
