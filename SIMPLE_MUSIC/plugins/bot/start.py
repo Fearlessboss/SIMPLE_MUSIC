@@ -28,7 +28,7 @@ from SIMPLE_MUSIC.utils.decorators.language import LanguageStart
 from SIMPLE_MUSIC.utils.formatters import get_readable_time
 from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_panel
 from strings import get_string
-# 🔄 Yahan config se START_IMG_URL aur START_VIDEO_URL dono import ho rahe hain
+# ✅ Yahan dono import ho rahe hain (Photo aur Video)
 from config import BANNED_USERS, START_IMG_URL, START_VIDEO_URL
 
 # Logger group mein notification bhejne ka background helper
@@ -51,7 +51,6 @@ async def send_logs_bg(message, text_type="started"):
 async def start_pm(client, message: Message):
     asyncio.create_task(add_served_user(message.from_user.id))
     
-    # ⚡ FLASH FIX: Default English string file turant load karega without internet/database
     _ = get_string("en")
 
     if len(message.text.split()) > 1:
@@ -59,7 +58,7 @@ async def start_pm(client, message: Message):
 
         if name.startswith("help"):
             keyboard = help_pannel_page1(_)
-            # Ispe image hi rahegi
+            # 🖼️ YAHAN IMAGE HI RAHEGI
             await client.send_photo(
                 chat_id=message.chat.id,
                 photo=START_IMG_URL,
@@ -91,6 +90,7 @@ async def start_pm(client, message: Message):
                     InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
                 ],
             ])
+            # 🖼️ YAHAN THUMBNAIL (IMAGE) HI RAHEGI
             await client.send_photo(
                 chat_id=message.chat.id,
                 photo=thumbnail,
@@ -101,8 +101,7 @@ async def start_pm(client, message: Message):
     else:
         out = private_panel(_)
         
-        # 🔥 BUS ISI JAGAH PHOTO KO HATAKAR VIDEO KIYA HAI
-        # Jab koi simple start karega private me, toh START_VIDEO_URL wala video chalega.
+        # 🎥 🔥 SIRF AUR SIRF YAHAN VIDEO AAYEGA! (Main private /start) 🔥 🎥
         await client.send_video(
             chat_id=message.chat.id,
             video=START_VIDEO_URL,
@@ -112,7 +111,6 @@ async def start_pm(client, message: Message):
         asyncio.create_task(send_logs_bg(message, "started"))
 
 
-# Baki group aur callbacks wale commands as it is rahenge (Image ke sath)
 @app.on_callback_query(filters.regex("home") & ~BANNED_USERS)
 @LanguageStart
 async def home_cb(client, CallbackQuery, _):
@@ -133,7 +131,7 @@ async def home_cb(client, CallbackQuery, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    # Group start me image hi rahegi
+    # 🖼️ YAHAN BHI IMAGE HI RAHEGI (Group Start)
     await client.send_photo(
         chat_id=message.chat.id,
         photo=START_IMG_URL,
@@ -141,6 +139,7 @@ async def start_gp(client, message: Message, _):
         reply_markup=InlineKeyboardMarkup(out),
     )
     return asyncio.create_task(add_served_chat(message.chat.id))
+
 
 @app.on_message(filters.new_chat_members, group=-1)
 async def welcome(client, message: Message):
@@ -172,7 +171,7 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                # Welcome me bhi image hi rahegi
+                # 🖼️ YAHAN BHI IMAGE HI RAHEGI (Welcome message)
                 await client.send_photo(
                     chat_id=message.chat.id,
                     photo=START_IMG_URL,
