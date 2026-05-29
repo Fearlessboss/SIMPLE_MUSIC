@@ -42,6 +42,11 @@
       "value": "",
       "required": true
     },
+    "UPSTREAM_REPO": {
+      "description": "Your Github repository link for updates.",
+      "value": "",
+      "required": false
+    },
     "YT_API_KEY": {
       "description": "Your YouTube Data API Key.",
       "value": "",
