@@ -44,7 +44,7 @@
     },
     "UPSTREAM_REPO": {
       "description": "Your Github repository link for updates.",
-      "value": "",
+      "value": "https://github.com/Simple-Boy-1k/SIMPLE_MUSIC.git",
       "required": false
     },
     "YT_API_KEY": {
