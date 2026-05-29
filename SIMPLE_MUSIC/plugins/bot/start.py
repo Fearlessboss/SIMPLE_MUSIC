@@ -2,6 +2,14 @@
 # 🔸 SIMPLE MUSIC Project
 # 🔹 Developed & Maintained by: Simple Boy (https://github.com/Simple-Boy-1k)
 # 📅 Copyright © 2026 – All Rights Reserved
+#
+# 📖 License:
+# This source code is open for educational and non-commercial use ONLY.
+# You are required to retain this credit in all copies or substantial portions of this file.
+# Commercial use, redistribution, or removal of this notice is strictly prohibited
+# without prior written permission from the author.
+#
+# ❤️ Made with dedication and love by Simple_Boy_1k
 # -----------------------------------------------
 import asyncio
 import time
@@ -28,8 +36,7 @@ from SIMPLE_MUSIC.utils.decorators.language import LanguageStart
 from SIMPLE_MUSIC.utils.formatters import get_readable_time
 from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_panel
 from strings import get_string
-# ✅ Yahan dono import ho rahe hain (Photo aur Video)
-from config import BANNED_USERS, START_IMG_URL, START_VIDEO_URL
+from config import BANNED_USERS, START_IMG_URL
 
 # Logger group mein notification bhejne ka background helper
 async def send_logs_bg(message, text_type="started"):
@@ -51,6 +58,7 @@ async def send_logs_bg(message, text_type="started"):
 async def start_pm(client, message: Message):
     asyncio.create_task(add_served_user(message.from_user.id))
     
+    # ⚡ FLASH FIX: Default English string file turant load karega without internet/database
     _ = get_string("en")
 
     if len(message.text.split()) > 1:
@@ -58,7 +66,6 @@ async def start_pm(client, message: Message):
 
         if name.startswith("help"):
             keyboard = help_pannel_page1(_)
-            # 🖼️ YAHAN IMAGE HI RAHEGI
             await client.send_photo(
                 chat_id=message.chat.id,
                 photo=START_IMG_URL,
@@ -90,7 +97,6 @@ async def start_pm(client, message: Message):
                     InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
                 ],
             ])
-            # 🖼️ YAHAN THUMBNAIL (IMAGE) HI RAHEGI
             await client.send_photo(
                 chat_id=message.chat.id,
                 photo=thumbnail,
@@ -101,16 +107,16 @@ async def start_pm(client, message: Message):
     else:
         out = private_panel(_)
         
-        # 🎥 🔥 SIRF AUR SIRF YAHAN VIDEO AAYEGA! (Main private /start) 🔥 🎥
-        await client.send_video(
+        await client.send_photo(
             chat_id=message.chat.id,
-            video=START_VIDEO_URL,
+            photo=START_IMG_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention, "Mina 0.5s", "0.2 GB", "1.2%", "14%", "⚡ Fast", "🔥 Active"),
             reply_markup=InlineKeyboardMarkup(out),
         )
         asyncio.create_task(send_logs_bg(message, "started"))
 
 
+# Baki group aur callbacks wale commands as it is rahenge
 @app.on_callback_query(filters.regex("home") & ~BANNED_USERS)
 @LanguageStart
 async def home_cb(client, CallbackQuery, _):
@@ -131,7 +137,6 @@ async def home_cb(client, CallbackQuery, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    # 🖼️ YAHAN BHI IMAGE HI RAHEGI (Group Start)
     await client.send_photo(
         chat_id=message.chat.id,
         photo=START_IMG_URL,
@@ -139,7 +144,6 @@ async def start_gp(client, message: Message, _):
         reply_markup=InlineKeyboardMarkup(out),
     )
     return asyncio.create_task(add_served_chat(message.chat.id))
-
 
 @app.on_message(filters.new_chat_members, group=-1)
 async def welcome(client, message: Message):
@@ -171,7 +175,6 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                # 🖼️ YAHAN BHI IMAGE HI RAHEGI (Welcome message)
                 await client.send_photo(
                     chat_id=message.chat.id,
                     photo=START_IMG_URL,
@@ -187,3 +190,4 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
+            
