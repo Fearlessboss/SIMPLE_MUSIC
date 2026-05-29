@@ -84,7 +84,7 @@
     },
     "PING_IMG_URL": {
       "description": "Image URL for Ping command.",
-      "value": "https://files.catbox.moe/z1h6ow.jpg",
+      "value": "https://files.catbox.moe/j40lbb.png",
       "required": false
     },
     "HELP_IMG_URL": {
