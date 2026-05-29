@@ -89,7 +89,7 @@
     },
     "HELP_IMG_URL": {
       "description": "Image URL for Help menu.",
-      "value": "https://files.catbox.moe/z1h6ow.jpg",
+      "value": "https://files.catbox.moe/b7qhd8.jpg",
       "required": false
     },
     "BUTTON_COLOUR": {
