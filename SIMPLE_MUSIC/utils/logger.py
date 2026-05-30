@@ -21,7 +21,6 @@ async def play_logs(message, streamtype):
     if await is_on_off(2):
         logger_text = f"""
 <blockquote><b>{app.mention} ᴘʟᴀʏ ʟᴏɢ</b></blockquote>
-
 <blockquote><b>ᴄʜᴀᴛ ɪᴅ :</b> <code>{message.chat.id}</code>
 <b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
 <b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
