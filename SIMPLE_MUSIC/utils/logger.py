@@ -24,13 +24,13 @@ async def play_logs(message, streamtype):
 
 <blockquote><b>ᴄʜᴀᴛ ɪᴅ :</b> <code>{message.chat.id}</code>
 <b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
-<b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}</blockquote>
+<b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
 
-<blockquote><b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>
+<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>
 <b>ɴᴀᴍᴇ :</b> {message.from_user.mention}
 <b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}</blockquote>
 
-<blockquote><b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
+<b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
 <b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}</blockquote>"""
         if message.chat.id != LOGGER_ID:
             try:
