@@ -158,8 +158,6 @@ queue_8 : "<b>● {0} ᴘʟᴀʏᴇʀ</b>\n\n<b>● sᴛʀᴇᴀᴍɪɴɢ :</b> 
 stream_1 : "<blockquote><b>🎬 sᴛʀᴇᴀᴍ ʜᴀs sᴛᴀʀᴛᴇᴅ. ᴇɴᴊᴏʏ ᴛʜᴇ ᴍᴜsɪᴄ |</b></blockquote>\n<blockquote expandable><b>🎧 ᴛɪᴛʟᴇ :</b> <a href={0}>{1}</a>\n<b>⏱️ ʟᴇɴɢᴛʜ :</b> {2} ᴍɪɴs\n<b>🥀 ʀᴇǫᴜᴇsᴛᴇʀ :</b> {3}‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </blockquote>"
 stream_2 : "<blockquote><b>🎬 sᴛʀᴇᴀᴍ ʜᴀs sᴛᴀʀᴛᴇᴅ. ᴇɴᴊᴏʏ ᴛʜᴇ ᴍᴜsɪᴄ |</b></blockquote>\n<blockquote expandable><b>🎧 sᴛʀᴇᴀᴍ ᴛʏᴘᴇ :</b> ʟɪᴠᴇ sᴛʀᴇᴀᴍ [ 𝖴𝗋𝗅 ]\n<b>🥀 ʀᴇǫᴜᴇsᴛᴇʀ :</b> {0}</blockquote>"
 
-
-ST_B_3 : "❖ ʟαɴɢꭎαɢє ❖"
 ST_B_4 : "❖🌺 CLOSE 🌺"
 BACK_BUTTON : "☚ ʙꫝᥴ𝘬 ∗"
 NEXT_PAGE: "⪢⪢"
