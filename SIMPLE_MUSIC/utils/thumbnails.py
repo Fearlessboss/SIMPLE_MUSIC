@@ -80,7 +80,7 @@ async def get_thumb(videoid: str) -> str:
     is_live = not duration or str(duration).strip().lower() in {"", "live", "live now"}
     duration_text = "Live" if is_live else duration or "Unknown Mins"
 
-    # Download thumbnail
+    # Download thumbnail (Iska code rakha hai par aapki DP upar override karegi)
     thumb_path = os.path.join(CACHE_DIR, f"thumb{videoid}.png")
     try:
         async with aiohttp.ClientSession() as session:
@@ -89,10 +89,19 @@ async def get_thumb(videoid: str) -> str:
                     async with aiofiles.open(thumb_path, "wb") as f:
                         await f.write(await resp.read())
     except Exception:
-        return YOUTUBE_IMG_URL
+        pass # Yahan se return hata diya taaki aapki DP lag sake
 
-    # Create base image
-    base = Image.open(thumb_path).resize((1280, 720)).convert("RGBA")
+    # ----------------------------------------------------
+    # 🔥 YAHAN CHANGE KIYA GAYA HAI 🔥
+    # Create base image (YouTube ki jagah aapki DP lagayega)
+    try:
+        # Apni DP ko mydp.jpg naam se assets/assets/ folder me zaroor daalna
+        base = Image.open("SIMPLE_MUSIC/assets/assets/mydp.jpg").resize((1280, 720)).convert("RGBA")
+    except Exception:
+        # Agar mydp.jpg nahi milti hai, toh automatically YouTube wala thumbnail lag jayega (No Crash)
+        base = Image.open(thumb_path).resize((1280, 720)).convert("RGBA")
+    # ----------------------------------------------------
+
     bg = ImageEnhance.Brightness(base.filter(ImageFilter.BoxBlur(10))).enhance(0.6)
 
     # Frosted glass panel
