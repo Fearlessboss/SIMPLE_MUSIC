@@ -160,7 +160,7 @@ stream_2 : "<blockquote><b>🎬 sᴛʀᴇᴀᴍ ʜᴀs sᴛᴀʀᴛᴇᴅ. ᴇɴ
 
 
 ST_B_3 : "❖ ʟαɴɢꭎαɢє ❖"
-ST_B_4 : "❖ ⱱⴢƬCLOSE_BUTTON  : "🌺 ᥴʟⴢ𝛅є 🌺"
+ST_B_4 : 'V3TCLOSE_BUTTON : "🌺 CLOSE 🌺"'
 BACK_BUTTON : "☚ ʙꫝᥴ𝘬 ∗"
 NEXT_PAGE: "⪢⪢"
 BACK_PAGE: "⪡⪡"
