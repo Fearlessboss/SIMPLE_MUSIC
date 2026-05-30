@@ -31,7 +31,7 @@ async def play_logs(message, streamtype):
 <b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}</blockquote>
 
 <blockquote><b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
-<b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}"""</blockquote>
+<b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}</blockquote>"""
         if message.chat.id != LOGGER_ID:
             try:
                 await app.send_message(
