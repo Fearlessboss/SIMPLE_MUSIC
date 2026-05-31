@@ -36,12 +36,45 @@ from SIMPLE_MUSIC.utils.logger import play_logs
 from SIMPLE_MUSIC.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
 
+# 💥 YAHAN HUMNE EK MAGIC WRAPPER BANAYA HAI JO CRASH HONE SE BACHAYEGA 💥
+class StickerWrapper:
+    def __init__(self, orig_msg, sticker_msg):
+        self.orig_msg = orig_msg
+        self.sticker_msg = sticker_msg
+        self.text_msg = None
+        
+    def __getattr__(self, name):
+        if self.text_msg:
+            return getattr(self.text_msg, name)
+        return getattr(self.sticker_msg, name)
+        
+    async def edit_text(self, text, *args, **kwargs):
+        if self.text_msg:
+            return await self.text_msg.edit_text(text, *args, **kwargs)
+        try:
+            await self.sticker_msg.delete()
+        except:
+            pass
+        self.text_msg = await self.orig_msg.reply_text(text, *args, **kwargs)
+        return self.text_msg
+        
+    async def delete(self, *args, **kwargs):
+        if self.text_msg:
+            try: return await self.text_msg.delete(*args, **kwargs)
+            except: pass
+        try:
+            return await self.sticker_msg.delete(*args, **kwargs)
+        except:
+            pass
+
+
 def _extract_clean_id(dirty_string):
     v_id = re.search(r"([a-zA-Z0-9_-]{11})", dirty_string)
     p_id = re.search(r"list=([a-zA-Z0-9_-]+)", dirty_string)
     if p_id: return f"https://www.youtube.com/playlist?list={p_id.group(1)}"
     if v_id: return f"https://www.youtube.com/watch?v={v_id.group(1)}"
     return "Never gonna give you up"
+
 
 @app.on_message(
    filters.command(["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"] ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"])
@@ -60,11 +93,9 @@ async def play_commnd(
     url,
     fplay,
 ):
-    # Sticker bhej rahe hain bina edit kiye taaki animation chalu rahe 🌹
-    await message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
-    
-    # Dusra text message details ke liye taaki sticker freeze na ho
-    mystic = await message.reply_text("🔎 ᴘʀᴏᴄᴇssɪɴɢ...")
+    # 👇 SIRF STICKER AAYEGA, KOI TEXT NAHI AAYEGA 👇
+    sticker_msg = await message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    mystic = StickerWrapper(message, sticker_msg)
     
     plist_id = None
     slider = None
@@ -264,6 +295,7 @@ async def play_commnd(
                 await mystic.delete()
                 return await message.reply_photo(photo=img, caption=cap, reply_markup=InlineKeyboardMarkup(buttons))
 
+
 @app.on_callback_query(filters.regex("MusicStream") & ~BANNED_USERS)
 @languageCB
 async def play_music(client, CallbackQuery, _):
@@ -279,9 +311,9 @@ async def play_music(client, CallbackQuery, _):
         await CallbackQuery.answer()
     except: pass
     
-    # Callback inline buttons ke liye bhi same fix 🌹
-    await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
-    mystic = await CallbackQuery.message.reply_text("🔎 ᴘʀᴏᴄᴇssɪɴɢ...")
+    # 👇 INLINE BUTTON WALI JAGAH BHI SIRF STICKER 👇
+    sticker_msg = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    mystic = StickerWrapper(CallbackQuery.message, sticker_msg)
     
     try: details, track_id = await YouTube.track(vidid, True)
     except: return await mystic.edit_text(_["play_3"])
@@ -293,10 +325,12 @@ async def play_music(client, CallbackQuery, _):
         return await mystic.edit_text(_["general_2"].format(type(e).__name__))
     return await mystic.delete()
 
+
 @app.on_callback_query(filters.regex("SIMPLEmousAdmin") & ~BANNED_USERS)
 async def SIMPLEmous_check(client, CallbackQuery):
-    try: await CallbackQuery.answer("» ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴜsᴇʀ ᴀᴄᴄᴏᴜɴᴛ :\n\nᴏᴘᴇɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ sᴇᴛᴛɪɴgs.\n-> ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀs\n-> ᴄʟɪᴄᴋ ᴏɴ ʏᴏᴜʀ ɴᴀᴍᴇ\n-> ᴜɴᴄʜᴇᴄᴋ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs.", show_alert=True)
+    try: await CallbackQuery.answer("» ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴜsᴇʀ ᴀᴄᴄᴏᴜɴᴛ :\n\nᴏᴘᴇɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ sᴇᴛᴛɪɴɢs.\n-> ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀs\n-> ᴄʟɪᴄᴋ ᴏɴ ʏᴏᴜʀ ɴᴀᴍᴇ\n-> ᴜɴᴄʜᴇᴄᴋ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs.", show_alert=True)
     except: pass
+
 
 @app.on_callback_query(filters.regex("SIMPLEPlaylists") & ~BANNED_USERS)
 @languageCB
@@ -311,9 +345,9 @@ async def play_playlists_command(client, CallbackQuery, _):
     try: await CallbackQuery.answer()
     except: pass
     
-    # Playlists ke liye bhi same fix 🌹
-    await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
-    mystic = await CallbackQuery.message.reply_text("🔎 ᴘʀᴏᴄᴇssɪɴɢ...")
+    # 👇 PLAYLIST WALI JAGAH BHI SIRF STICKER 👇
+    sticker_msg = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    mystic = StickerWrapper(CallbackQuery.message, sticker_msg)
     
     videoid, spotify = lyrical.get(videoid), True
     if ptype == "yt":
@@ -337,6 +371,7 @@ async def play_playlists_command(client, CallbackQuery, _):
     except Exception as e:
         return await mystic.edit_text(_["general_2"].format(type(e).__name__))
     return await mystic.delete()
+
 
 @app.on_callback_query(filters.regex("slider") & ~BANNED_USERS)
 @languageCB
