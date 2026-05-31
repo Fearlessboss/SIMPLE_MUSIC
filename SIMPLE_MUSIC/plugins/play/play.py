@@ -94,7 +94,7 @@ async def play_commnd(
     fplay,
 ):
     # 👇 SIRF STICKER AAYEGA, KOI TEXT NAHI AAYEGA 👇
-    sticker_msg = await message.reply_sticker("CAACAgUAAxkBAAERTwZqHIdQWQuUQK-RPPG0UfkZ5qIaFAACwg0AAl8-AVayjKIlvXg3XDsE")
+    sticker_msg = await message.reply_sticker("CAACAgUAAxkBAAERTwhqHIh0Un6Q90Pt2k4ofU072oy9CwAC0REAAnYXCFX56ap6aGiFmTsE-RPPG0UfkZ5qIaFAACwg0AAl8-AVayjKIlvXg3XDsE")
     mystic = StickerWrapper(message, sticker_msg)
     
     plist_id = None
@@ -312,7 +312,7 @@ async def play_music(client, CallbackQuery, _):
     except: pass
     
     # 👇 INLINE BUTTON WALI JAGAH BHI SIRF STICKER 👇
-    sticker_msg = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTwZqHIdQWQuUQK-RPPG0UfkZ5qIaFAACwg0AAl8-AVayjKIlvXg3XDsE")
+    sticker_msg = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTwhqHIh0Un6Q90Pt2k4ofU072oy9CwAC0REAAnYXCFX56ap6aGiFmTsE-RPPG0UfkZ5qIaFAACwg0AAl8-AVayjKIlvXg3XDsE")
     mystic = StickerWrapper(CallbackQuery.message, sticker_msg)
     
     try: details, track_id = await YouTube.track(vidid, True)
@@ -346,7 +346,7 @@ async def play_playlists_command(client, CallbackQuery, _):
     except: pass
     
     # 👇 PLAYLIST WALI JAGAH BHI SIRF STICKER 👇
-    sticker_msg = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTwZqHIdQWQuUQK-RPPG0UfkZ5qIaFAACwg0AAl8-AVayjKIlvXg3XDsE")
+    sticker_msg = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTwhqHIh0Un6Q90Pt2k4ofU072oy9CwAC0REAAnYXCFX56ap6aGiFmTsE")
     mystic = StickerWrapper(CallbackQuery.message, sticker_msg)
     
     videoid, spotify = lyrical.get(videoid), True
