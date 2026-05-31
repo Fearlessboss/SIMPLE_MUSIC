@@ -59,28 +59,51 @@ async def mention_users(client, message: Message, mode, text):
             "__Reply to a message or give me some text to mention others!__"
         )
 
-    spam_chats.append(chat_id)
+    if chat_id not in spam_chats:
+        spam_chats.append(chat_id)
 
     usrnum = 0
     usrtxt = ""
 
-    async for member in client.get_chat_members(chat_id):
-        if chat_id not in spam_chats:
-            break
+    try:
+        async for member in client.get_chat_members(chat_id):
+            # FIXED: Agar list se id hat gayi, toh loop instantly wahin ruk jayega
+            if chat_id not in spam_chats:
+                break
 
-        user = member.user
-        if not user or user.is_bot:
-            continue
+            user = member.user
+            if not user or user.is_bot:
+                continue
 
-        usrnum += 1
-        name = user.first_name or "User"
-        usrtxt += f"[{name}](tg://user?id={user.id}) "
+            usrnum += 1
+            name = user.first_name or "User"
+            usrtxt += f"[{name}](tg://user?id={user.id}) "
 
-        if usrnum == 5:
+            if usrnum == 5:
+                if mode == "text_on_cmd":
+                    await client.send_message(
+                        chat_id,
+                        f"{usrtxt}\n\n{msg_text}",
+                        parse_mode=ParseMode.MARKDOWN,
+                        disable_web_page_preview=True,
+                    )
+                else:
+                    await reply_msg.reply_text(
+                        usrtxt,
+                        parse_mode=ParseMode.MARKDOWN,
+                        disable_web_page_preview=True,
+                    )
+
+                await asyncio.sleep(2)
+                usrnum = 0
+                usrtxt = ""
+
+        # Bachen huye users ko tag karne ke liye (Agar total members 5 ke multiple na hon)
+        if usrnum > 0 and chat_id in spam_chats:
             if mode == "text_on_cmd":
                 await client.send_message(
                     chat_id,
-                    f"{usrtxt}\n\n{msg_text}",
+                    f"{usrtxt}\n\n{msg_text if msg_text else ''}",
                     parse_mode=ParseMode.MARKDOWN,
                     disable_web_page_preview=True,
                 )
@@ -91,14 +114,15 @@ async def mention_users(client, message: Message, mode, text):
                     disable_web_page_preview=True,
                 )
 
-            await asyncio.sleep(2)
-            usrnum = 0
-            usrtxt = ""
-
-    try:
-        spam_chats.remove(chat_id)
-    except Exception:
-        pass
+    except Exception as e:
+        LOGGER.error(f"Error in tagging: {e}")
+    finally:
+        # Loop poora khatam hone par chat ko list se saaf karein
+        if chat_id in spam_chats:
+            try:
+                spam_chats.remove(chat_id)
+            except Exception:
+                pass
 
 
 # ===================== UTAG =====================
@@ -168,24 +192,27 @@ async def atag(_, message: Message):
         )
 
 
-# ===================== CANCEL =====================
+# ===================== CANCEL (FIXED) =====================
 
-@app.on_message(filters.command("cancel") & filters.group)
+# group=-1 lagaya hai taaki ye handler sabse pehle run ho clashing se bachne ke liye
+@app.on_message(filters.command(["cancel", "utagstop", "stop"]) & filters.group, group=-1)
 async def cancel_spam(_, message: Message):
     user_id = message.from_user.id if message.from_user else None
     if not await is_admin(message.chat.id, user_id):
-        return await message.reply_text("❌ Only admins can use this command.")
+        return
 
     chat_id = message.chat.id
 
-    if chat_id not in spam_chats:
-        return await message.reply_text(
-            "__There is no process ongoing...__"
-        )
-
-    try:
-        spam_chats.remove(chat_id)
-    except Exception:
-        pass
-
-    await message.reply_text("__Stopped.__")
+    # Agar is file ka utag process chal raha hai
+    if chat_id in spam_chats:
+        try:
+            spam_chats.remove(chat_id)
+        except Exception:
+            pass
+        await message.reply_text("🛑 **Tagging process has been stopped successfully!**")
+        
+        # CRITICAL: Ye line doosri files ko /cancel par 'NOT TAGGING BABY' bolne se rok degi
+        message.stop_propagation()
+    
+    # Agar is file mein kuch nahi chal raha, toh stop_propagation() nahi chalega, 
+    # jisse doosri files (jaise music bot ke apne commands) sahi se respond kar sakein.
