@@ -60,8 +60,11 @@ async def play_commnd(
     url,
     fplay,
 ):
-    # YAHAN PEHLA CHANGE KIYA HAI 👇
-    mystic = await message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    # Sticker bhej rahe hain bina edit kiye taaki animation chalu rahe 🌹
+    await message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    
+    # Dusra text message details ke liye taaki sticker freeze na ho
+    mystic = await message.reply_text("🔎 ᴘʀᴏᴄᴇssɪɴɢ...")
     
     plist_id = None
     slider = None
@@ -276,8 +279,9 @@ async def play_music(client, CallbackQuery, _):
         await CallbackQuery.answer()
     except: pass
     
-    # YAHAN DUSRA CHANGE KIYA HAI 👇
-    mystic = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    # Callback inline buttons ke liye bhi same fix 🌹
+    await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    mystic = await CallbackQuery.message.reply_text("🔎 ᴘʀᴏᴄᴇssɪɴɢ...")
     
     try: details, track_id = await YouTube.track(vidid, True)
     except: return await mystic.edit_text(_["play_3"])
@@ -291,7 +295,7 @@ async def play_music(client, CallbackQuery, _):
 
 @app.on_callback_query(filters.regex("SIMPLEmousAdmin") & ~BANNED_USERS)
 async def SIMPLEmous_check(client, CallbackQuery):
-    try: await CallbackQuery.answer("» ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴜsᴇʀ ᴀᴄᴄᴏᴜɴᴛ :\n\nᴏᴘᴇɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ sᴇᴛᴛɪɴɢs.\n-> ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀs\n-> ᴄʟɪᴄᴋ ᴏɴ ʏᴏᴜʀ ɴᴀᴍᴇ\n-> ᴜɴᴄʜᴇᴄᴋ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs.", show_alert=True)
+    try: await CallbackQuery.answer("» ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴜsᴇʀ ᴀᴄᴄᴏᴜɴᴛ :\n\nᴏᴘᴇɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ sᴇᴛᴛɪɴgs.\n-> ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀs\n-> ᴄʟɪᴄᴋ ᴏɴ ʏᴏᴜʀ ɴᴀᴍᴇ\n-> ᴜɴᴄʜᴇᴄᴋ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs.", show_alert=True)
     except: pass
 
 @app.on_callback_query(filters.regex("SIMPLEPlaylists") & ~BANNED_USERS)
@@ -307,8 +311,9 @@ async def play_playlists_command(client, CallbackQuery, _):
     try: await CallbackQuery.answer()
     except: pass
     
-    # YAHAN TEESRA CHANGE KIYA HAI 👇
-    mystic = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    # Playlists ke liye bhi same fix 🌹
+    await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    mystic = await CallbackQuery.message.reply_text("🔎 ᴘʀᴏᴄᴇssɪɴɢ...")
     
     videoid, spotify = lyrical.get(videoid), True
     if ptype == "yt":
