@@ -60,9 +60,9 @@ async def play_commnd(
     url,
     fplay,
 ):
-    mystic = await message.reply_text(
-        _["play_2"].format(channel) if channel else _["play_1"]
-    )
+    # YAHAN PEHLA CHANGE KIYA HAI 👇
+    mystic = await message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    
     plist_id = None
     slider = None
     plist_type = None
@@ -275,7 +275,10 @@ async def play_music(client, CallbackQuery, _):
         await CallbackQuery.message.delete()
         await CallbackQuery.answer()
     except: pass
-    mystic = await CallbackQuery.message.reply_text(_["play_2"].format(channel) if channel else _["play_1"])
+    
+    # YAHAN DUSRA CHANGE KIYA HAI 👇
+    mystic = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    
     try: details, track_id = await YouTube.track(vidid, True)
     except: return await mystic.edit_text(_["play_3"])
     if details["duration_min"] and time_to_seconds(details["duration_min"]) > config.DURATION_LIMIT:
@@ -303,7 +306,10 @@ async def play_playlists_command(client, CallbackQuery, _):
     await CallbackQuery.message.delete()
     try: await CallbackQuery.answer()
     except: pass
-    mystic = await CallbackQuery.message.reply_text(_["play_2"].format(channel) if channel else _["play_1"])
+    
+    # YAHAN TEESRA CHANGE KIYA HAI 👇
+    mystic = await CallbackQuery.message.reply_sticker("CAACAgUAAxkBAAERTv5qHIALLnWjwa8yLvYAATGErl_zhh0AAp0OAAKeHVBVrJHwS0S2_o07BA")
+    
     videoid, spotify = lyrical.get(videoid), True
     if ptype == "yt":
         spotify = False
