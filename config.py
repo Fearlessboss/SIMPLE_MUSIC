@@ -144,7 +144,7 @@ DEBUG_IGNORE_LOG = True
 # ❖ ɪ ᴍ ᴀ ɢ ᴇ   ᴜ ʀ ʟ s ❖
 # ━━━━━━━━━━━━━━━━━━━━━━━
 # ✅ Yahan par Multiple Start Images ka setup banaya gaya hai
-img1 = getenv("START_IMG_URL_1", "https://files.catbox.moe/netj4f.jpg")
+img1 = getenv("START_IMG_URL", "https://files.catbox.moe/uva6jn.jpg")
 img2 = getenv("START_IMG_URL_2", "https://files.catbox.moe/fw4e91.jpg")
 img3 = getenv("START_IMG_URL_3", "https://files.catbox.moe/h7qiye.jpg")
 img4 = getenv("START_IMG_URL_4", "https://files.catbox.moe/uva6jn.jpg")
