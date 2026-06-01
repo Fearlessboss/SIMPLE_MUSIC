@@ -24,7 +24,7 @@ from SIMPLE_MUSIC.utils.formatters import get_readable_time
 from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_panel
 from strings import get_string
 
-# ✅ Sirf BANNED_USERS aur START_IMG_URL import hoga
+# ✅ Purana tareeqa: Wapas START_IMG_URL import kar diya
 from config import BANNED_USERS, START_IMG_URL
 
 async def send_logs_bg(message, text_type="started"):
@@ -85,7 +85,6 @@ async def start_pm(client, message: Message):
             asyncio.create_task(send_logs_bg(message, "info"))
     else:
         out = private_panel(_)
-        # ✅ Wapas send_photo kar diya hai (Image aayegi)
         await client.send_photo(
             chat_id=message.chat.id,
             photo=START_IMG_URL,
@@ -124,7 +123,7 @@ async def start_gp(client, message: Message, _):
 
 
 @app.on_message(filters.new_chat_members, group=-1)
-async def welcome(client, message: Message):
+async def welcome(client, Message: Message):
     for member in message.new_chat_members:
         try:
             language = await get_lang(message.chat.id)
@@ -159,4 +158,3 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
-            
