@@ -35,6 +35,10 @@ RANDOM_START_IMG = [
     "https://files.catbox.moe/j8jyfo.jpg", 
     "https://files.catbox.moe/e8arcz.jpg",
     "https://files.catbox.moe/uva6jn.jpg"
+    "https://files.catbox.moe/fw4e91.jpg"‚
+    "https://files.catbox.moe/i6auwg.jpg"‚
+    "https://files.catbox.moe/h7qiye.jpg"‚
+    "https://files.catbox.moe/netj4f.jpg"‚
 ]
 
 async def send_logs_bg(message, text_type="started"):
