@@ -77,9 +77,9 @@
       "value": "https://t.me/music_Bot_Adda",
       "required": false
     },
-    "START_IMG_URL_1": {
+    "START_IMG_URL": {
       "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 1 - Required).",
-      "value": "https://files.catbox.moe/z1h6ow.jpg",
+      "value": "https://files.catbox.moe/uva6jn.jpg",
       "required": false
     },
     "START_IMG_URL_2": {
