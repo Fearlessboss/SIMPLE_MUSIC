@@ -25,8 +25,7 @@ from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_pa
 from strings import get_string
 
 # ✅ Sirf BANNED_USERS aur START_IMG_URL import hoga
-from config import BANNED_USERS, START_IMG_URL
-
+from config import BANNED_USERS
 async def send_logs_bg(message, text_type="started"):
     if await is_on_off(2):
         try:
