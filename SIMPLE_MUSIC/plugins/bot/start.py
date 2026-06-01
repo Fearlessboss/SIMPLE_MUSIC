@@ -1,4 +1,4 @@
-import asyncio
+Import asyncio
 import time
 from pyrogram import filters
 from pyrogram.enums import ChatType
@@ -26,6 +26,7 @@ from strings import get_string
 
 # ✅ Sirf BANNED_USERS aur START_IMG_URL import hoga
 from config import BANNED_USERS, START_IMG_URL
+
 async def send_logs_bg(message, text_type="started"):
     if await is_on_off(2):
         try:
@@ -158,3 +159,4 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
+            
