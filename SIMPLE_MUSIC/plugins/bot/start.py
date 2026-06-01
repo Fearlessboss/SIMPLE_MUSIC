@@ -1,5 +1,6 @@
 import asyncio
 import time
+import random # ✅ Random module add kiya hai
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -24,8 +25,17 @@ from SIMPLE_MUSIC.utils.formatters import get_readable_time
 from SIMPLE_MUSIC.utils.inline import help_pannel_page1, private_panel, start_panel
 from strings import get_string
 
-# ✅ Sirf BANNED_USERS aur START_IMG_URL import hoga
-from config import BANNED_USERS, START_IMG_URL
+# ✅ Sirf BANNED_USERS import hoga, START_IMG_URL ki zaroorat nahi
+from config import BANNED_USERS
+
+# 🌟 YAHAN APNI IMAGES KE LINKS DAALEIN 🌟
+# Aap is list me jitni chahein utni images add kar sakte hain
+RANDOM_START_IMG = [
+    "https://files.catbox.moe/rm08b5.jpg", # Aapki screenshot wali image jaisi
+    "https://files.catbox.moe/j8jyfo.jpg", 
+    "https://files.catbox.moe/e8arcz.jpg",
+    "https://files.catbox.moe/uva6jn.jpg"
+]
 
 async def send_logs_bg(message, text_type="started"):
     if await is_on_off(2):
@@ -51,7 +61,7 @@ async def start_pm(client, message: Message):
             keyboard = help_pannel_page1(_)
             await client.send_photo(
                 chat_id=message.chat.id,
-                photo=START_IMG_URL,
+                photo=random.choice(RANDOM_START_IMG), # ✅ Yahan random image set ki hai
                 caption=_['help_1'].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -85,10 +95,10 @@ async def start_pm(client, message: Message):
             asyncio.create_task(send_logs_bg(message, "info"))
     else:
         out = private_panel(_)
-        # ✅ Wapas send_photo kar diya hai (Image aayegi)
+        # ✅ Yahan bhi random image lagayi hai
         await client.send_photo(
             chat_id=message.chat.id,
-            photo=START_IMG_URL,
+            photo=random.choice(RANDOM_START_IMG),
             caption=_["start_2"].format(message.from_user.mention, app.mention, "Mina 0.5s", "0.2 GB", "1.2%", "14%", "⚡ Fast", "🔥 Active"),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -116,7 +126,7 @@ async def start_gp(client, message: Message, _):
     uptime = int(time.time() - _boot_)
     await client.send_photo(
         chat_id=message.chat.id,
-        photo=START_IMG_URL,
+        photo=random.choice(RANDOM_START_IMG), # ✅ Yahan bhi random lag gaya
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -151,7 +161,7 @@ async def welcome(client, message: Message):
                 out = start_panel(_)
                 await client.send_photo(
                     chat_id=message.chat.id,
-                    photo=START_IMG_URL,
+                    photo=random.choice(RANDOM_START_IMG), # ✅ Yahan welcome msg me bhi
                     caption=_["start_3"].format(message.from_user.mention, app.mention, message.chat.title, app.mention),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
