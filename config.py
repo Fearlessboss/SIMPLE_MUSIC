@@ -45,10 +45,10 @@ MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 # ❖ ᴀ ᴘ ɪ   s ᴇ ᴛ ᴛ ɪ ɴ ɢ s ❖
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 YTPROXY_URL = getenv("YTPROXY_URL", "https://tgapi.xbitcode.com")
-YT_API_KEY = getenv("YT_API_KEY", "") # youtube song api key, generate free key or buy paid plan from http://music.xbitcode.com
-API_URL = getenv("API_URL", "https://api.nexgenbots.xyz") #youtube song url
+YT_API_KEY = getenv("YT_API_KEY", "") 
+API_URL = getenv("API_URL", "https://api.nexgenbots.xyz") 
 VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://api.video.nexgenbots.xyz')
-API_KEY = getenv("API_KEY", "") # youtube song api key, generate free key or buy paid plan from https://console.nexgenbots.xyz
+API_KEY = getenv("API_KEY", "") 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # ❖ ʟ ɪ ᴍ ɪ ᴛ s   ᴀ ɴ ᴅ   ɪ ᴅ s ❖
@@ -143,7 +143,21 @@ DEBUG_IGNORE_LOG = True
 # ━━━━━━━━━━━━━━━━━━━━━━━
 # ❖ ɪ ᴍ ᴀ ɢ ᴇ   ᴜ ʀ ʟ s ❖
 # ━━━━━━━━━━━━━━━━━━━━━━━
-START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/z1h6ow.jpg")
+# ✅ Yahan par Multiple Start Images ka setup banaya gaya hai
+img1 = getenv("START_IMG_URL", "https://files.catbox.moe/netj4f.jpg")
+img2 = getenv("START_IMG_URL_2", "https://files.catbox.moe/fw4e91.jpg")
+img3 = getenv("START_IMG_URL_3", "https://files.catbox.moe/h7qiye.jpg")
+img4 = getenv("START_IMG_URL_4", "https://files.catbox.moe/uva6jn.jpg")
+img5 = getenv("START_IMG_URL_5", "https://files.catbox.moe/aqc274.jpg")
+img6 = getenv("START_IMG_URL_6", "https://files.catbox.moe/i6auwg.jpg")
+
+RANDOM_START_IMG = []
+# ✅ Sirf wahi links list me aayenge jo khali nahi hain, isse koi error nahi aayega!
+for img in [img1, img2, img3, img4, img5, img6]:
+    if img and img.strip(): 
+        RANDOM_START_IMG.append(img.strip())
+
+# Baaki sab purana waisa ka waisa hi hai
 PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/j40lbb.png")
 HELP_IMG_URL = getenv("HELP_IMG_URL", "https://files.catbox.moe/b7qhd8.jpg")
 PLAYLIST_IMG_URL = "https://files.catbox.moe/cc6f5z.jpg"
