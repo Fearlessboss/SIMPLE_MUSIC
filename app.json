@@ -78,33 +78,8 @@
       "required": false
     },
     "START_IMG_URL": {
-      "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 1 - Required).",
-      "value": "https://files.catbox.moe/uva6jn.jpg",
-      "required": false
-    },
-    "START_IMG_URL_2": {
-      "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 2 - Optional).",
-      "value": "https://files.catbox.moe/netj4f.jpg",
-      "required": false
-    },
-    "START_IMG_URL_3": {
-      "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 3 - Optional).",
-      "value": "https://files.catbox.moe/fw4e91.jpg",
-      "required": false
-    },
-    "START_IMG_URL_4": {
-      "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 4 - Optional).",
-      "value": "https://files.catbox.moe/h7qiye.jpg",
-      "required": false
-    },
-    "START_IMG_URL_5": {
-      "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 5 - Optional).",
-      "value": "https://files.catbox.moe/uva6jn.jpg",
-      "required": false
-    },
-    "START_IMG_URL_6": {
-      "description": "अगर आप एक से ज्यादा फोटोज लगाना है तो लिंक डालो (Image 6 - Optional).",
-      "value": "https://files.catbox.moe/aqc274.jpg",
+      "description": "Image URL for Start command.",
+      "value": "https://files.catbox.moe/z1h6ow.jpg",
       "required": false
     },
     "PING_IMG_URL": {
