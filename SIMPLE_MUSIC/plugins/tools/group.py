@@ -15,32 +15,58 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from SIMPLE_MUSIC import app
 from config import OWNER_ID
+import aiohttp
+import re
 
+# Small caps helper function for cool font
+def to_small_caps(text):
+    mapping = {
+        "a":"ᴀ","b":"ʙ","c":"ᴄ","d":"ᴅ","e":"ᴇ","f":"ꜰ","g":"ɢ","h":"ʜ","i":"ɪ","j":"ᴊ",
+        "k":"ᴋ","l":"ʟ","m":"ᴍ","n":"ɴ","o":"ᴏ","p":"ᴘ","q":"ǫ","r":"ʀ","s":"s","t":"ᴛ",
+        "u":"ᴜ","v":"ᴠ","w":"ᴡ","x":"x","y":"ʏ","z":"ᴢ",
+        "A":"ᴀ","B":"ʙ","C":"ᴄ","D":"ᴅ","E":"ᴇ","F":"ꜰ","G":"ɢ","H":"ʜ","I":"ɪ","J":"ᴊ",
+        "K":"ᴋ","L":"ʟ","M":"ᴍ","N":"ɴ","O":"ᴏ","P":"ᴘ","Q":"ǫ","R":"ʀ","S":"s","T":"ᴛ",
+        "U":"ᴜ","V":"ᴠ","W":"ᴡ","X":"x","Y":"ʏ","Z":"ᴢ"
+    }
+    return "".join(mapping.get(c, c) for c in text)
 
-
+# vc on
 @app.on_message(filters.video_chat_started)
 async def brah(_, msg):
-       await msg.reply("ᴠᴏɪᴄᴇ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ")
+       await msg.reply("🎧 **ᴠᴏɪᴄᴇ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ**")
+
 # vc off
 @app.on_message(filters.video_chat_ended)
 async def brah2(_, msg):
-       await msg.reply("**ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ**")
+       await msg.reply("**ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ** 🚫")
 
-# invite members on vc
+# invite members on vc (EDITED AS PER IMAGE 23171.jpg)
 @app.on_message(filters.video_chat_members_invited)
-async def brah3(app :app, message:Message):
-           text = f"{message.from_user.mention} ɪɴᴠɪᴛᴇᴅ "
-           x = 0
+async def brah3(app: app, message: Message):
+           # Inviter ka naam stylish fonts me
+           inviter_name = to_small_caps(message.from_user.first_name)
+           text = f"⚜️🖇️➩ {message.from_user.mention(inviter_name)} ─── ɪɴᴠɪᴛᴇᴅ ───📬🎸 "
+           
+           invited_users = []
            for user in message.video_chat_members_invited.users:
-             try:
-               text += f"[{user.first_name}](tg://user?id={user.id}) "
-               x += 1
-             except Exception:
-               pass
+               try:
+                   # Invited members ke naam link ke sath bina click kiye account khule (or text look like design)
+                   user_name = to_small_caps(user.first_name)
+                   invited_users.append(f"[{user_name}](tg://user?id={user.id})")
+               except Exception:
+                   pass
+           
+           if not invited_users:
+               return
+
+           # Saare invited logo ko comma se join karenge
+           text += ", ".join(invited_users)
+           
            try:
-             await message.reply(f"{text} 😉")
-           except:
-             pass
+               # Aapka pasandida badhiya formatting text aur emojis
+               await message.reply(f"{text} 🦋💘😌")
+           except Exception:
+               pass
 
 
 ####
@@ -64,7 +90,7 @@ async def calculate_math(client, message: Message):
     await message.reply_text(response, quote=True)
 
 ###
-@app.on_message(filters.command("leavegroup")& filters.user(OWNER_ID))
+@app.on_message(filters.command("leavegroup") & filters.user(OWNER_ID))
 async def bot_leave(_, message):
     chat_id = message.chat.id
     text = f"sᴜᴄᴄᴇssғᴜʟʟʏ   ʟᴇғᴛ  !!."
@@ -73,7 +99,6 @@ async def bot_leave(_, message):
 
 
 ####
-
 
 @app.on_message(filters.command(["spg"], ["/", "!", "."]))
 async def search(event):
