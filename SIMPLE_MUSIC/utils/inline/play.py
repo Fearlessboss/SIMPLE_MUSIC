@@ -113,6 +113,13 @@ def stream_markup_timer(_, chat_id, played, dur):
             InlineKeyboardButton(text="💬 sᴜᴘᴘᴏʀᴛ", url=config.SUPPORT_CHAT, **_get_style(r3)),
             InlineKeyboardButton(text="📢 ᴄʜᴀɴɴᴇʟ", url=config.SUPPORT_CHANNEL, **_get_style(r3)),
         ],
+        # 🟢 AUTOPLAY BUTTONS ADDED HERE
+        [
+            InlineKeyboardButton(text="🔄 AUTOPLAY SKIP", callback_data=f"AutoplaySkip {chat_id}", **_get_style(r3)),
+        ],
+        [
+            InlineKeyboardButton(text="AUTOPLAY : ON ✅", callback_data=f"AutoplayToggle {chat_id}", **_get_style(r3)),
+        ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close", **_get_style(r4))],
     ]
     return buttons
@@ -131,6 +138,13 @@ def stream_markup(_, chat_id):
         [
             InlineKeyboardButton(text="💬 sᴜᴘᴘᴏʀᴛ", url=config.SUPPORT_CHAT, **_get_style(r2)),
             InlineKeyboardButton(text="📢 ᴄʜᴀɴɴᴇʟ", url=config.SUPPORT_CHANNEL, **_get_style(r2)),
+        ],
+        # 🟢 AUTOPLAY BUTTONS ADDED HERE
+        [
+            InlineKeyboardButton(text="🔄 AUTOPLAY SKIP", callback_data=f"AutoplaySkip {chat_id}", **_get_style(r2)),
+        ],
+        [
+            InlineKeyboardButton(text="AUTOPLAY : ON ✅", callback_data=f"AutoplayToggle {chat_id}", **_get_style(r2)),
         ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close", **_get_style(r3))],
     ]
