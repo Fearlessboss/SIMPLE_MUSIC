@@ -18,7 +18,7 @@ from config import OWNER_ID
 import aiohttp
 import re
 
-# Small caps helper function for cool font
+# Small caps helper function for stylish font
 def to_small_caps(text):
     mapping = {
         "a":"ᴀ","b":"ʙ","c":"ᴄ","d":"ᴅ","e":"ᴇ","f":"ꜰ","g":"ɢ","h":"ʜ","i":"ɪ","j":"ᴊ",
@@ -33,38 +33,40 @@ def to_small_caps(text):
 # vc on
 @app.on_message(filters.video_chat_started)
 async def brah(_, msg):
-       await msg.reply("🎧 **ᴠᴏɪᴄᴇ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ**")
+       await msg.reply("👉 **ᴠᴏɪᴄᴇ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ**😍")
 
 # vc off
 @app.on_message(filters.video_chat_ended)
 async def brah2(_, msg):
-       await msg.reply("**ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ** 🚫")
+       await msg.reply("👉**ᴠᴄ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ**😆")
 
-# invite members on vc (EDITED AS PER IMAGE 23171.jpg)
+# invite members on vc (EDITED AS PER IMAGE 23218.jpg)
 @app.on_message(filters.video_chat_members_invited)
 async def brah3(app: app, message: Message):
-           # Inviter ka naam stylish fonts me
+           # Invite karne wale ka naam aur mention link
            inviter_name = to_small_caps(message.from_user.first_name)
-           text = f"⚜️🖇️➩ {message.from_user.mention(inviter_name)} ─── ɪɴᴠɪᴛᴇᴅ ───📬🎸 "
+           inviter_mention = message.from_user.mention(inviter_name)
            
-           invited_users = []
+           invited_users_list = []
            for user in message.video_chat_members_invited.users:
                try:
-                   # Invited members ke naam link ke sath bina click kiye account khule (or text look like design)
+                   # Jinko invite kiya gaya hai unke naam aur links
                    user_name = to_small_caps(user.first_name)
-                   invited_users.append(f"[{user_name}](tg://user?id={user.id})")
+                   invited_users_list.append(f"[{user_name}](tg://user?id={user.id})")
                except Exception:
                    pass
            
-           if not invited_users:
+           if not invited_users_list:
                return
 
-           # Saare invited logo ko comma se join karenge
-           text += ", ".join(invited_users)
+           # Agar ek se zyada log hain toh comma se alag honge
+           invited_members = ", ".join(invited_users_list)
+           
+           # 📝 Image 23218.jpg ke mutabik naya layout text
+           final_text = f"🎤 {invited_members} **ɢᴏᴛ ᴀɴ ɪɴᴠɪᴛᴇ ғʀᴏᴍ** {inviter_mention} 💌"
            
            try:
-               # Aapka pasandida badhiya formatting text aur emojis
-               await message.reply(f"{text} 🦋💘😌")
+               await message.reply(final_text)
            except Exception:
                pass
 
