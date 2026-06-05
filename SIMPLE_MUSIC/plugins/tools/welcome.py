@@ -100,12 +100,6 @@ async def greet_new_member(_, member: ChatMemberUpdated):
     if member.new_chat_member and not member.old_chat_member and member.new_chat_member.status != "kicked":
         user = member.new_chat_member.user
 
-        if temp.MELCOW.get(f"welcome-{chat_id}") is not None:
-            try:
-                await temp.MELCOW[f"welcome-{chat_id}"].delete()
-            except Exception as e:
-                LOGGER.error(e)
-
         try:
             button_text = "✙ ᴋɪᴅɴᴀᴘ ᴍᴇ ✙"
             add_link = f"https://t.me/{app.username}?startgroup=true"
@@ -125,8 +119,8 @@ async def greet_new_member(_, member: ChatMemberUpdated):
 **⎉──────▢✭ 侖 ✭▢──────⎉**
 """
 
-            # 🎬 Video ke sath aapka custom text caption bhejega
-            msg = await app.send_video(
+            # 🎬 Video ke sath aapka custom text caption bhejega aur ye permanent rahega
+            await app.send_video(
                 chat_id,
                 video=WELCOME_VIDEO_URL,
                 caption=caption_text,
@@ -134,15 +128,6 @@ async def greet_new_member(_, member: ChatMemberUpdated):
                     [InlineKeyboardButton(text=button_text, url=add_link)],
                 ])
             )
-
-            temp.MELCOW[f"welcome-{chat_id}"] = msg
-
-            # Auto-delete welcome message in 5 minutes (300 seconds)
-            await asyncio.sleep(300)
-            try:
-                await msg.delete()
-            except:
-                pass
 
         except Exception as e:
             LOGGER.error(e)
