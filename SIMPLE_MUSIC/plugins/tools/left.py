@@ -47,7 +47,7 @@ async def member_has_left(client: app, member: ChatMemberUpdated):
 
     try:
         # ✨ Ekdum short text format jo sirf left karne wale ka naam dikhayega:
-        text = f"**{user.mention} left the group... 🥺💔**"
+        text = f"**{user.first} left the group... 🥺💔**"
 
         # Direct chhota text message send hoga aur yeh kabhi auto-delete nahi hoga
         await client.send_message(
