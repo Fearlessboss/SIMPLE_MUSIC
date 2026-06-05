@@ -29,6 +29,9 @@ from SIMPLE_MUSIC.utils.Simple_ban import admin_filter
 
 LOGGER = getLogger(__name__)
 
+# ❗ APNI WELCOME VIDEO KI TELEGRAM LINK YAHAN PASTE KAREIN ❗
+WELCOME_VIDEO_URL = "https://files.catbox.moe/9iom66.mp4" 
+
 # --------------------------------------------------------------------------------- #
 class WelDatabase:
     def __init__(self):
@@ -88,6 +91,7 @@ async def auto_state(_, message):
 @app.on_chat_member_updated(filters.group, group=-3)
 async def greet_new_member(_, member: ChatMemberUpdated):
     chat_id = member.chat.id
+    group_name = member.chat.title  # Group ka naam nikalne ke liye
     count = await app.get_chat_members_count(chat_id)
     A = await wlcm.find_one(chat_id)
     if A:
@@ -103,31 +107,31 @@ async def greet_new_member(_, member: ChatMemberUpdated):
                 LOGGER.error(e)
 
         try:
-            button_text = "๏ ᴠɪᴇᴡ ɴᴇᴡ ᴍᴇᴍʙᴇʀ ๏"
-            add_button_text = "✙ ᴋɪᴅɴᴀᴘ ᴍᴇ ✙"
-            deep_link = f"tg://openmessage?user_id={user.id}"
+            button_text = "✙ ᴋɪᴅɴᴀᴘ ᴍᴇ ✙"
             add_link = f"https://t.me/{app.username}?startgroup=true"
 
-            # Ab ye photo ki jagah direct text message bhejega
-            msg = await app.send_message(
-                chat_id,
-                text=f"""
-**⎊─────☵ ᴡᴇʟᴄᴏᴍᴇ ☵─────⎊**
-
+            # 📝 Aapka bataya hua custom text format + Group name configuration:
+            caption_text = f"""
+**⎊─────☵ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ☵─────⎊**
+📋 **ɢʀᴏᴜᴘ ⧽** {group_name}
 **▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬**
-
-**☉ ɴᴀᴍᴇ ⧽** {user.mention}
-**☉ ɪᴅ ⧽** `{user.id}`
-**☉ ᴜ_ɴᴀᴍᴇ ⧽** @{user.username if user.username else 'None'}
-**☉ ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ⧽** {count}
+☉ **ɴᴀᴍᴇ ⧽** {user.mention}
+☉ **ɪᴅ ⧽** `{user.id}`
+☉ **ᴜ_ɴᴀᴍᴇ ⧽** @{user.username if user.username else 'None'}
+☉ **ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ⧽** {count}
 
 **▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬**
 
 **⎉──────▢✭ 侖 ✭▢──────⎉**
-""",
+"""
+
+            # 🎬 Video ke sath aapka custom text caption bhejega
+            msg = await app.send_video(
+                chat_id,
+                video=WELCOME_VIDEO_URL,
+                caption=caption_text,
                 reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton(button_text, url=deep_link)],
-                    [InlineKeyboardButton(text=add_button_text, url=add_link)],
+                    [InlineKeyboardButton(text=button_text, url=add_link)],
                 ])
             )
 
