@@ -2,14 +2,6 @@
 # 🔸 SIMPLE MUSIC Project
 # 🔹 Developed & Maintained by: Simple Boy (https://github.com/Simple-Boy-1k)
 # 📅 Copyright © 2026 – All Rights Reserved
-#
-# 📖 License:
-# This source code is open for educational and non-commercial use ONLY.
-# You are required to retain this credit in all copies or substantial portions of this file.
-# Commercial use, redistribution, or removal of this notice is strictly prohibited
-# without prior written permission from the author.
-#
-# ❤️ Made with dedication and love by Simple_Boy_1k
 # -----------------------------------------------
 
 import config
@@ -92,9 +84,15 @@ def private_panel(_):
             ),
         ],
         [
+            # Repo aur Download button ek sath set ho gaye hain
             InlineKeyboardButton(
                 text=_["S_B_7"], 
                 url="https://github.com/Simple-Boy-1k/SIMPLE_MUSIC",
+                **get_style(3)
+            ),
+            InlineKeyboardButton(
+                text=_["S_B_11"], 
+                callback_data="download_main_menu",
                 **get_style(3)
             )
         ],
