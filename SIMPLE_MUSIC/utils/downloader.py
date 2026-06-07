@@ -5,6 +5,33 @@ from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from SIMPLE_MUSIC import app
 
+# 📥 DOWNLOAD MENU CALLBACK (Button dabane par yeh turant khulega)
+@app.on_callback_query(filters.regex("download_main_menu"))
+async def download_menu_handler(_, query: CallbackQuery):
+    try:
+        text = (
+            "**📥 DOWNLOAD COMMANDS MENU**\n\n"
+            "Aap niche diye gaye tareeqon se koi bhi safe media download kar sakte hain:\n\n"
+            "🎵 **For Audio/MP3:**\n"
+            "`/song <link>` (Example: `/song https://youtube.com/...`)\n\n"
+            "📹 **For Video (720p):**\n"
+            "`/video <link>` (Example: `/video https://instagram.com/...`)\n\n"
+            "⚠️ _Note: Bade files Telegram ke limits ki wajah se thoda waqt le sakte hain._"
+        )
+        
+        keyboard = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(text="🏡 Back To Home", callback_data="home")
+                ]
+            ]
+        )
+        await query.answer() # Screen par loading indicator hatane ke liye
+        await query.message.edit_text(text, reply_markup=keyboard)
+    except Exception as e:
+        print(f"Callback Error: {e}")
+
+
 # 📹 VIDEO DOWNLOADER COMMAND (/video ya /vid)
 @app.on_message(filters.command(["video", "vid"]))
 async def video_downloader(_, message: Message):
@@ -46,7 +73,7 @@ async def video_downloader(_, message: Message):
         await app.send_video(
             chat_id=message.chat.id,
             video=file_name,
-            caption=f"🎬 **Title:** {data.get('title', 'Video')}\n\n✨ Powered by SENO X MUSIC ♪",
+            caption=f"🎬 **Title:** {data.get('title', 'Video')}\n\n✨ Powered by RESSO MUSIC ♪",
             supports_streaming=True
         )
 
@@ -110,8 +137,8 @@ async def audio_downloader(_, message: Message):
             chat_id=message.chat.id,
             audio=file_name,
             title=data.get('title', 'Audio'),
-            performer="SENO X MUSIC",
-            caption=f"🎵 **Song:** {data.get('title', 'Audio')}\n\n✨ Powered by SENO X MUSIC ♪"
+            performer="RESSO MUSIC",
+            caption=f"🎵 **Song:** {data.get('title', 'Audio')}\n\n✨ Powered by RESSO MUSIC ♪"
         )
 
         await msg.delete()
@@ -122,27 +149,3 @@ async def audio_downloader(_, message: Message):
         await msg.edit(f"❌ Error: {str(e)}")
         if 'file_name' in locals() and os.path.exists(file_name):
             os.remove(file_name)
-
-
-# 📥 DOWNLOAD MENU CALLBACK (Button dabane par kya khulega)
-@app.on_callback_query(filters.regex("download_main_menu"))
-async def download_menu_handler(_, query: CallbackQuery):
-    text = (
-        "**📥 DOWNLOAD COMMANDS MENU**\n\n"
-        "Aap niche diye gaye tareeqon se koi bhi safe media download kar sakte hain:\n\n"
-        "🎵 **For Audio/MP3:**\n"
-        "`/song <link>` (Example: `/song https://youtube.com/...`)\n\n"
-        "📹 **For Video (720p):**\n"
-        "`/video <link>` (Example: `/video https://instagram.com/...`)\n\n"
-        "⚠️ _Note: Bade files Telegram ke limits ki wajah se thoda waqt le sakte hain._"
-    )
-    
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(text="🏡 Back To Home", callback_data="home")
-            ]
-        ]
-    )
-    
-    await query.message.edit_text(text, reply_markup=keyboard)
