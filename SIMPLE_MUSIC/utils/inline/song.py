@@ -1,15 +1,29 @@
-# -----------------------------------------------
-# 🔸 RESSO MUSIC Project
-# 🔹 Developed & Maintained by: Simple Boy
-# 📅 Copyright © 2026 – All Rights Reserved
-# -----------------------------------------------
-
 import os
 import random
 import requests
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.types import Message, CallbackQuery
 from SIMPLE_MUSIC import app
+from SIMPLE_MUSIC.utils.inline.song import download_menu_markup
+
+# 📥 DOWNLOAD MENU CALLBACK (Button dabne par menu show karega)
+@app.on_callback_query(filters.regex("download_main_menu"))
+async def download_menu_handler(_, query: CallbackQuery):
+    try:
+        text = (
+            "**📥 DOWNLOAD COMMANDS MENU**\n\n"
+            "Aap niche diye gaye tareeqon se koi bhi safe media download kar sakte hain:\n\n"
+            "🎵 **For Audio/MP3:**\n"
+            "`/song <link>` (Example: `/song https://youtube.com/...`)\n\n"
+            "📹 **For Video (720p):**\n"
+            "`/video <link>` (Example: `/video https://instagram.com/...`)\n\n"
+            "⚠️ _Note: Bade files Telegram ke limits ki wajah se thoda waqt le sakte hain._"
+        )
+        await query.answer()
+        await query.message.edit_text(text, reply_markup=download_menu_markup())
+    except Exception as e:
+        print(f"Callback Error: {e}")
+
 
 # 🎵 SONG DOWNLOADER COMMAND (/song)
 @app.on_message(filters.command(["song"]))
