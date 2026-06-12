@@ -29,7 +29,7 @@
     },
     "MONGO_DB_URI": {
       "description": "Get a mongodb url from https://cloud.mongodb.com.",
-      "value": "",
+      "value": "mongodb+srv://Senorita_Db_user:Simple_boy@senorita.hiniu0l.mongodb.net/?appName=Senorita",
       "required": true
     },
     "OWNER_ID": {
@@ -69,7 +69,7 @@
     },
     "SUPPORT_CHAT": {
       "description": "Your support group link.",
-      "value": "https://t.me/+wcALPiJtMCQ0NWFh",
+      "value": "https://t.me/+HwsbN4MEDwpkYjcx",
       "required": false
     },
     "SUPPORT_CHANNEL": {
