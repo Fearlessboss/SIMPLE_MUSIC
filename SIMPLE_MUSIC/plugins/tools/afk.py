@@ -20,8 +20,8 @@ from SIMPLE_MUSIC import app
 from SIMPLE_MUSIC.mongo.readable_time import get_readable_time
 from SIMPLE_MUSIC.mongo.afkdb import add_afk, is_afk, remove_afk
 
-
-@app.on_message(filters.command(["fk", "afk", "off", "bye", "ye"], prefixes=["a", "A", "b", "B", "/", "!", "."]))
+# 🛠️ FIX: Faltu prefixes aur 'bye' hata diya. Ab sirf /afk, !afk ya .afk kaam karega.
+@app.on_message(filters.command(["afk"], prefixes=["/", "!", "."]))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
@@ -50,7 +50,8 @@ async def chat_watcher_func(_, message: Message):
 
     if message.text:
         lowered = message.text.lower()
-        if any(lowered.startswith(prefix + cmd) for prefix in ["/", ".", "!", "a", "b"] for cmd in ["afk", "fk", "off", "bye", "ye"]):
+        # 🛠️ FIX: Watcher me se bhi 'bye' aur 'ye' wale checks hata diye
+        if any(lowered.startswith(prefix + cmd) for prefix in ["/", ".", "!"] for cmd in ["afk"]):
             return
 
     msg = ""
