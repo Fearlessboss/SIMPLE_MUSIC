@@ -17,7 +17,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from SIMPLE_MUSIC import app
 
 INFO_TEXT = """
-<u><b>ᴜsᴇʀ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b></u>
+<u><b>ʙʜᴀɪ ᴛᴜɴᴇ ᴋᴜᴄʜ ᴋɪʏᴀ ʜᴀɪ ᴋʏᴀ😂😂</b></u>
 <b>● ᴜsᴇʀ ɪᴅ ➠</b> <code>{}</code>
 <b>● ᴜsᴇʀɴᴀᴍᴇ ➠</b> <code>@{}</code>
 <b>● ᴍᴇɴᴛɪᴏɴ ➠</b> {}
