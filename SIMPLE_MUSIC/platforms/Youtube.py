@@ -273,5 +273,7 @@ class YouTubeAPI:
         try:
             res = await _core_download(link, is_video)
             return (res, True) if res else (None, False)
-        except:
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
             return None, False
