@@ -15,6 +15,7 @@ import random
 import string
 import re
 from pyrogram import filters
+import traceback
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 import config
@@ -275,7 +276,7 @@ async def play_commnd(
         try:
             await stream(_, mystic, user_id, details, chat_id, user_name, message.chat.id, video=video, streamtype=streamtype, spotify=spotify, forceplay=fplay)
         except Exception as e:
-            return await mystic.edit_text(_["general_2"].format(type(e).__name__))
+            raise
         await mystic.delete()
         return await play_logs(message, streamtype=streamtype)
     else:
