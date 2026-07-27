@@ -443,7 +443,7 @@ async def vote_change(client, CallbackQuery, _):
 # 🛠️ UPDATED REPO SECTION: Custom Name & Links (No hidden codes!)
 _c = "repo"
 _d_url = "https://t.me/AnyaXmusicbot"
-_r_url = "https://github.com/Simple-Boy-1k/SIMPLE_MUSIC.git"
+_r_url = "https://t.me/AnyaXmusicbot"
 _i_url = "https://img.sanishtech.com/u/634954cfa576380fda54874a69b96c05.jpg"
 _btn_1 = "🌺ᴏᴡɴᴇʀ🌺"
 _btn_2 = "🌹ʀᴇᴘᴏ🌹"
