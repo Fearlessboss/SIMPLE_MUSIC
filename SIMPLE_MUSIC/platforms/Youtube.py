@@ -132,13 +132,18 @@ async def _core_download(link: str, is_video: bool) -> str:
     def fallback_ytdl():
         opts = {
             "format": "bestvideo[height<=480][fps<=30][ext=mp4]+bestaudio[ext=m4a]/best" if is_video else "bestaudio/best",
-            "outtmpl": final_path,
+            "outtmpl": os.path.join(DOWNLOAD_DIR, f"%(id)s.%(ext)s"),
             "quiet": True, "nocheckcertificate": True, "no_warnings": True, "ignoreerrors": True,
         }
         if not is_video: opts["postprocessors"] = [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3"}]
         yt_dlp.YoutubeDL(opts).download([link])
         
     await loop.run_in_executor(None, fallback_ytdl)
+    import glob
+    files = glob.glob(os.path.join(DOWNLOAD_DIR, f"{vid_id}.*"))
+    for f in files:
+        if os.path.exists(f) and os.path.getsize(f) > 1024:
+            return f
     
     if os.path.exists(final_path) and os.path.getsize(final_path) > 1024:
         return final_path
